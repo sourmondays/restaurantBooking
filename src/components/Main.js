@@ -1,21 +1,24 @@
 import React from 'react';
 import { Row, Col, Button } from "reactstrap";
+import { Link } from "react-router-dom";
+
 
 const Main = props => {
+
     return (
         <div>
             <Row noGutters className="text-center align-items-center mt-5">
                 <Col>
-                    <h4 className="restaurant-header">Make your reservarion for a fancy dinner!</h4>
+                    <h4 className="restaurant-header">Make your reservation for a fancy dinner!</h4>
                 </Col>
-
             </Row>
             <Row noGutters className="justify-content-center">
-                <Button color="none" className="make-reservation-btn" onClick={_ => {
-                    props.setPage(1)
-                }}>
-                    Make a reservation
-                </Button>
+
+                <Link to='/booking'>
+                    <Button color="none" className="make-reservation-btn btn btn-dark">
+                        Make a reservation
+                    </Button>
+                </Link>
             </Row>
         </div>
     )

@@ -1,21 +1,42 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 import Navbar from "./components/Navbar"
 import Main from "./components/Main"
 import Booking from "./components/Booking"
 import ThankYou from "./components/ThankYou"
+import Admin from "./components/AdminLogin"
 
-function App() {
-  const [page, setPage] = useState(0);
 
-  return (
-    <div>
-      <Navbar setPage={setPage} />
-      {page === 0 ? <Main setPage={setPage} /> : null}
-      {page === 1 ? <Booking setPage={setPage} /> : null}
-      {page === 2 ? <ThankYou /> : null}
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route path="/booking" component={Booking} />
+            <Route path="/thankyou" component={ThankYou} />
+            <Route path="/admin" component={Admin} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    )
+  }
 }
+
+// function App() {
+//   const [page, setPage] = useState(0);
+
+//   return (
+//     <div>
+//       <Navbar setPage={setPage} />
+//       {page === 0 ? <Main setPage={setPage} /> : null}
+//       {page === 1 ? <Booking setPage={setPage} /> : null}
+//       {page === 2 ? <ThankYou /> : null}
+//     </div>
+//   );
+// }
 
 export default App;

@@ -1,13 +1,19 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useState } from "react";
+
+import Navbar from "./components/Navbar"
+import Main from "./components/Main"
+import Booking from "./components/Booking"
+import ThankYou from "./components/ThankYou"
 
 function App() {
+  const [page, setPage] = useState(0);
+
   return (
-    <div className="App">
-      <h1>
-        Restaurant booking system with React and Node JS, this is backend!
-      </h1>
+    <div>
+      <Navbar setPage={setPage} />
+      {page === 0 ? <Main setPage={setPage} /> : null}
+      {page === 1 ? <Booking setPage={setPage} /> : null}
+      {page === 2 ? <ThankYou /> : null}
     </div>
   );
 }

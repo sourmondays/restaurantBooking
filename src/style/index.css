@@ -16,7 +16,9 @@ body {
     font-size: 3rem;
 }
 
-
+.card {
+  max-width: 20rem;
+}
 
 @media (min-width: 768px) {
 

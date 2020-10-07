@@ -1,75 +1,82 @@
-import React, { useState } from "react";
-import {
-  Row,
-  Col,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Input,
-  Button,
-} from "reactstrap";
-
-import Table from "./Table";
+import React from "react";
+import { row, col, button } from "reactstrap";
 
 const Booking = () => {
-  const [totalTables, setTotalTables] = useState([]);
-
-  const [selection, setSelection] = useState({
-    table: {
-      name: null,
-      id: null,
-    },
-    date: new Date(),
-    time: null,
-    size: 0,
-  });
-
-  const [bookings, setBookings] = useState({
-    name: "",
-    phone: "",
-    email: "",
-  });
-
-  const [clock] = useState(["18:00", "21:00"]);
-
-  const [reservationError, setReservationError] = useState(false);
-
-  const getDate = () => {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const date =
-      months[selection.date.getMonth()] +
-      " " +
-      selection.date.getDate() +
-      " " +
-      selection.date.getFullYear();
-    let time = selection.time > 12 ? time + 12 + ":00" : time + ":00";
-    console.log(time);
-    const datetime = new Date(date + " " + time);
-    return datetime;
-  };
-
-  const getEmptyTables = () => {
-    let tables = totalTables.filter((table) => table.isAvaileble);
-    return tables.length;
-  };
-
   return (
-    <div className="text-center align-items-center mt-5">
+    <div className="text-center align-items-center m-5">
       <h1>Make a reservation</h1>
+      <div className="container-booking">
+        <form>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label for="firstName">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="firstName"
+                placeholder="ex. Ann"
+              />
+            </div>
+            <div className="form-group col-md-6">
+              <label for="lastName">Last Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="lastName"
+                placeholder="ex. Jonsson"
+              />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                className="form-control"
+                id="email"
+                placeholder="ex. ann.jonsson@hotmail.com"
+              />
+            </div>
+            <div className="form-group col-md-6">
+              <label for="phone">Phone </label>
+              <input
+                type="text"
+                className="form-control"
+                id="phoneNumber"
+                placeholder="ex. 0701236986"
+              />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label for="date">Date</label>
+              <input type="date" className="form-control" id="date" />
+            </div>
+            <div className="form-group col-md-4">
+              <label for="time">Time</label>
+              <select id="time" className="form-control">
+                <option selected>Choose time</option>
+                <option>18:00</option>
+                <option>21:00</option>
+              </select>
+            </div>
+            <div className="form-group col-md-2">
+              <label for="sizeparty">Party size</label>
+              <input
+                type="number"
+                className="form-control"
+                id="sizeParty"
+                min="1"
+                max="6"
+                placeholder="1 - 6 people"
+              />
+            </div>
+          </div>
+          <button type="submit" className="btn btn-primary col-md-12">
+            Make a Reservation
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -109,6 +109,9 @@ const Booking = () => {
                 className="form-control"
                 onChange={handlePeople}
               >
+                <option disabled selected>
+                  Size
+                </option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>

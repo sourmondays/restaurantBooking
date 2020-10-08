@@ -1,5 +1,4 @@
 import React from "react";
-import { row, col, button } from "reactstrap";
 
 const Booking = () => {
   const handleFirstName = (e) => {
@@ -25,7 +24,7 @@ const Booking = () => {
     console.log(e.target.value);
   };
 
-  const handTime = (e) => {
+  const handleTime = (e) => {
     console.log(e.target.value);
   };
 
@@ -41,7 +40,7 @@ const Booking = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label for="firstName">Name</label>
+              <label htmlFor="firstName">Name</label>
               <input
                 type="text"
                 className="form-control"
@@ -51,7 +50,7 @@ const Booking = () => {
               />
             </div>
             <div className="form-group col-md-6">
-              <label for="lastName">Last Name</label>
+              <label htmlFor="lastName">Last Name</label>
               <input
                 type="text"
                 className="form-control"
@@ -63,7 +62,7 @@ const Booking = () => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="text"
                 className="form-control"
@@ -73,7 +72,7 @@ const Booking = () => {
               />
             </div>
             <div className="form-group col-md-6">
-              <label for="phone">Phone </label>
+              <label htmlFor="phone">Phone </label>
               <input
                 type="text"
                 className="form-control"
@@ -85,7 +84,7 @@ const Booking = () => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label for="date">Date</label>
+              <label htmlFor="date">Date</label>
               <input
                 type="date"
                 className="form-control"
@@ -94,15 +93,17 @@ const Booking = () => {
               />
             </div>
             <div className="form-group col-md-4">
-              <label for="time">Time</label>
-              <select id="time" className="form-control" onChange={handTime}>
-                <option selected>Choose time</option>
+              <label htmlFor="time">Time</label>
+              <select id="time" className="form-control" onChange={handleTime}>
+                <option disabled selected>
+                  Choose time
+                </option>
                 <option>18:00</option>
                 <option>21:00</option>
               </select>
             </div>
             <div className="form-group col-md-2">
-              <label for="sizeparty">Party size</label>
+              <label htmlFor="sizeparty">Party size</label>
               <select
                 id="time"
                 className="form-control"

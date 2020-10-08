@@ -1,12 +1,12 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Navbar from "./components/Navbar"
-import Main from "./components/Main"
-import Booking from "./components/Booking"
-import ThankYou from "./components/ThankYou"
-import Admin from "./components/AdminLogin"
-
+import Navbar from "./components/Navbar";
+import Main from "./components/Main";
+import Booking from "./components/Booking";
+import ThankYou from "./components/ThankYou";
+import Admin from "./components/AdminLogin";
+import AdminPanel from "./components/AdminPanel";
 
 class App extends React.Component {
   render() {
@@ -19,10 +19,11 @@ class App extends React.Component {
             <Route path="/booking" component={Booking} />
             <Route path="/thankyou" component={ThankYou} />
             <Route path="/admin" component={Admin} />
+            <Route path="/adminpanel" component={AdminPanel} />
           </Switch>
         </div>
       </BrowserRouter>
-    )
+    );
   }
 }
 

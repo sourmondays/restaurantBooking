@@ -1,15 +1,16 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import 'antd/dist/antd.css';
 
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import Booking from "./components/Booking";
 import Admin from "./components/AdminLogin";
-import AdminPanel from "./components/AdminPanel";
-import AdminBooking from "./components/AdminBooking";
+import AdminCreate from "./components/AdminCreate";
 import AdminBookings from "./components/AdminBookings";
-import AdminEdit from "./components/AdminEdit";
-import AdminDelete from "./components/AdminDelete";
+import AdminSettings from "./components/AdminSettings";
+import AdminPanel from "./components/AdminPanel";
+
 
 class App extends React.Component {
   render() {
@@ -20,13 +21,11 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Main} />
             <Route path="/booking" component={Booking} />
-
             <Route path="/admin" component={Admin} />
-            <Route path="/adminpanel" component={AdminPanel} />
-            <Route path="/adminbooking" component={AdminBooking} />
+            <Route path="/admincreate" component={AdminCreate} />
             <Route path="/adminbookings" component={AdminBookings} />
-            <Route path="/adminedit" component={AdminEdit} />
-            <Route path="/admindelte" component={AdminDelete} />
+            <Route path="/adminsettings" component={AdminSettings} />
+            <Route path="/adminbookings" component={AdminPanel} />
           </Switch>
         </div>
       </BrowserRouter>

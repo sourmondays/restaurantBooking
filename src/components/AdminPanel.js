@@ -1,28 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "reactstrap";
+import { Button, Space } from 'antd';
 
-const AdminPanel = (props) => {
-  return (
-    <div>
-      <h1 className="text-center mt-5">Admin Panel</h1>
 
-      <div className=" text-center align-items-center mt-5">
-        <Link to="/adminbooking">
-          <Button className="btn-success mr-2">Create</Button>
-        </Link>
-        <Link to="/adminbookings">
-          <Button className="btn-success mr-2">Bookings</Button>
-        </Link>
-        <Link to="/adminedit">
-          <Button className="btn-success mr-2">Edit</Button>
-        </Link>
-        <Link to="/admindelte">
-          <Button className="btn-danger">Delete</Button>
-        </Link>
-      </div>
-    </div>
-  );
+const AdminPanel = () => {
+    return (
+        <div>
+            <div className="text-right align-items-right mt-5 mr-5">
+                <Space direction="horizontal">
+                    <Link to="/adminbookings">
+                        <Button type="primary">Bookings</Button>
+                    </Link>
+                    <Link to="/admincreate">
+                        <Button type="primary">Create</Button>
+                    </Link>
+                    <Link to="/adminsettings">
+                        <Button type="primary">Settings</Button>
+                    </Link>
+                </Space>
+            </div>
+        </div>
+    );
 };
 
 export default AdminPanel;

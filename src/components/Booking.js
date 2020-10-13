@@ -1,5 +1,4 @@
 import React from "react";
-import AdminPanel from "./AdminPanel";
 import { DatePicker, Space, Select, Button, InputNumber, Input } from "antd";
 
 const Booking = () => {
@@ -15,9 +14,8 @@ const Booking = () => {
   }
   return (
     <>
-      <AdminPanel />
       <div className="text-center align-items-center m-5">
-        <h1>Admin reservation</h1>
+        <h1>Table Booking</h1>
         <div className="container-booking">
           <form onSubmit="">
             <div className="form-row justify-content-center">

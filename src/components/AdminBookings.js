@@ -7,11 +7,36 @@ import { useQuery } from 'react-query';
 
 
 const Bookings = () => {
+
+
+
+
   const getBookings = async () => {
     const res = await Axios.get('http://localhost:3001/booking');
     console.log(res.data);
     return res.data;
   }
+
+
+  // const deleteSpecBooking = async () => {
+  //   const res = await Axios.delete('http://localhost:3001/booking');
+  //   console.log(res.data);
+  //   return res.data;
+  // }
+
+  const deleteRow = async (id, e) => {
+    Axios.delete(`http://localhost:3001/booking/${id}`)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        const posts = this.state.bookings.filter(item => item.id !== id);
+        this.setState({ posts });
+
+      })
+  }
+
+  // axios.delete("url", { params: { id: itemId } }).then(response => {
+  //   console.log(response);
 
   const { data, isLoading, error } = useQuery(['bookings'], getBookings, {
   });
@@ -25,7 +50,7 @@ const Bookings = () => {
   if (error) {
     return (
       <div className="alert alert-warning">
-        <h2>Sorry, app made a boo-boo...</h2>
+        <h2>Someting went wrong when trying to get all bookings.</h2>
         <p><strong>Error message:</strong> {error.message}</p>
       </div>
     )
@@ -55,12 +80,12 @@ const Bookings = () => {
             <Option value="18.00">18.00</Option>
             <Option value="21.00">21.00</Option>
           </Select>
-          <Button className="my-button" type="primary" onClick={getBookings}>Filter</Button>
+          <Button className="my-button" type="primary">Filter</Button>
         </Space>
       </div>
 
       <div className="text-center align-items-center mt-5 mb-5 ml-5 mr-5">
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">Name</th>
@@ -75,12 +100,12 @@ const Bookings = () => {
             <tbody>
               <tr>
                 <>
-                  <th scope="row">{bookings.firstName}{" "}{bookings.last}</th>
+                  <th scope="row">{bookings.firstName}{" "}{bookings.lastName}</th>
                   <td>{bookings.date}</td>
                   <td>{bookings.phone}</td>
                   <td>{bookings.noPersons}</td>
                   <td>  <Button className="my-button" type="primary">Edit</Button></td>
-                  <td> <Button className="my-button" type="danger">Delete</Button></td>
+                  <td> <Button className="my-button" type="danger" onClick={(e) => deleteRow(bookings.id, e)}>Delete</Button></td>
                 </>
               </tr>
             </tbody>

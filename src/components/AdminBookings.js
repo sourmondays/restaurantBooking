@@ -1,8 +1,36 @@
 import React from "react";
 import AdminPanel from "./AdminPanel";
 import { DatePicker, Space, Select, Button } from 'antd';
+import Axios from 'axios';
+import { useQuery } from 'react-query';
+
+
 
 const Bookings = () => {
+  const getBookings = async () => {
+    const res = await Axios.get('http://localhost:3001/booking');
+    console.log(res.data);
+    return res.data;
+  }
+
+  const { data, isLoading, error } = useQuery(['bookings'], getBookings, {
+  });
+
+  if (isLoading) {
+    return (
+      <h2>Loading...</h2>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="alert alert-warning">
+        <h2>Sorry, app made a boo-boo...</h2>
+        <p><strong>Error message:</strong> {error.message}</p>
+      </div>
+    )
+  }
+
   //Datepicker 
   function onChange(date, dateString) {
     console.log(date, dateString);
@@ -27,7 +55,7 @@ const Bookings = () => {
             <Option value="18.00">18.00</Option>
             <Option value="21.00">21.00</Option>
           </Select>
-          <Button className="my-button" type="primary">Filter</Button>
+          <Button className="my-button" type="primary" onClick={getBookings}>Filter</Button>
         </Space>
       </div>
 
@@ -43,16 +71,20 @@ const Bookings = () => {
               <th scope="col">Delete</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Mark Anderssson</th>
-              <td>2020-11-12</td>
-              <td>0765-006007</td>
-              <td>6</td>
-              <td>  <Button className="my-button" type="primary">Edit</Button></td>
-              <td> <Button className="my-button" type="danger">Delete</Button></td>
-            </tr>
-          </tbody>
+          {data.data.bookings.map(bookings => (
+            <tbody>
+              <tr>
+                <>
+                  <th scope="row">{bookings.firstName}{" "}{bookings.last}</th>
+                  <td>{bookings.date}</td>
+                  <td>{bookings.phone}</td>
+                  <td>{bookings.noPersons}</td>
+                  <td>  <Button className="my-button" type="primary">Edit</Button></td>
+                  <td> <Button className="my-button" type="danger">Delete</Button></td>
+                </>
+              </tr>
+            </tbody>
+          ))}
         </table>
       </div>
 

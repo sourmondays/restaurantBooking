@@ -1,141 +1,65 @@
 import React from "react";
 import AdminPanel from "./AdminPanel";
+import { DatePicker, Space, Select, Button, InputNumber, Input } from "antd";
 
 const Booking = () => {
-  const handleFirstName = (e) => {
-    console.log(e.target.value);
-  };
+  //Datepicker
+  function onChange(date, dateString) {
+    console.log(date, dateString);
+  }
+  //Select
+  const { Option } = Select;
 
-  const handleLastName = (e) => {
-    console.log(e.target.value);
-  };
-
-  const handleEmail = (e) => {
-    console.log(e.target.value);
-  };
-
-  const handlePhone = (e) => {
-    console.log(e.target.value);
-  };
-  const handleDate = (e) => {
-    console.log(e.target.value);
-  };
-
-  const handlePeople = (e) => {
-    console.log(e.target.value);
-  };
-
-  // const handleTime = (e) => {
-  //   console.log(e.target.value);
-  // };
-
-  const handleTime = (e) => {
-    // this.setState({ value: e.target.value });
-    console.log(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Send info to db to save the booking
-  };
+  function handleChange(value) {
+    console.log(`selected ${value}`);
+  }
   return (
     <>
       <AdminPanel />
       <div className="text-center align-items-center m-5">
         <h1>Admin reservation</h1>
         <div className="container-booking">
-          <form onSubmit={handleSubmit}>
-            <div className="form-row">
+          <form onSubmit="">
+            <div className="form-row justify-content-center">
               <div className="form-group col-md-6">
-                <label htmlFor="firstName">Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="firstName"
-                  onChange={handleFirstName}
-                  placeholder="ex. Ann"
-                />
-              </div>
-              <div className="form-group col-md-6">
-                <label htmlFor="lastName">Last Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  onChange={handleLastName}
-                  id="lastName"
-                  placeholder="ex. Jonsson"
-                />
+                <Space direction="horizonta">
+                  <Input placeholder="First name" />
+                  <Input placeholder="Last name" />
+                </Space>
               </div>
             </div>
-            <div className="form-row">
+            <div className="form-row justify-content-center">
               <div className="form-group col-md-6">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="email"
-                  onChange={handleEmail}
-                  placeholder="ex. ann.jonsson@hotmail.com"
-                />
-              </div>
-              <div className="form-group col-md-6">
-                <label htmlFor="phone">Phone </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="phoneNumber"
-                  onChange={handlePhone}
-                  placeholder="ex. 0701236986"
-                />
+                <Space direction="horizonta">
+                  <Input placeholder="Email" />
+                  <Input placeholder="Phone" />
+                </Space>
               </div>
             </div>
-            <div className="form-row">
+            <div className="form-row justify-content-center">
               <div className="form-group col-md-6">
-                <label htmlFor="date">Date</label>
-                <input
-                  type="date"
-                  className="form-control"
-                  id="date"
-                  onChange={handleDate}
-                />
-              </div>
-              <div className="form-group col-md-4">
-                <label htmlFor="time">Time</label>
-                <select
-                  id="time"
-                  className="form-control"
-                  onChange={handleTime}
-                >
-                  <option disabled selected>
-                    Choose time
-                  </option>
-                  <option value="18:00">18:00</option>
-                  <option value="21:00">21:00</option>
-                </select>
-              </div>
-              <div className="form-group col-md-2">
-                <label htmlFor="sizeparty">Party size</label>
-                <select
-                  id="time"
-                  className="form-control"
-                  onChange={handlePeople}
-                >
-                  <option disabled selected>
-                    Size
-                  </option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                </select>
+                <Space direction="horizontal">
+                  <DatePicker onChange={onChange} />
+                  <Select
+                    defaultValue="18.00"
+                    style={{ width: 120 }}
+                    onChange={handleChange}
+                  >
+                    <Option value="18.00">18.00</Option>
+                    <Option value="21.00">21.00</Option>
+                  </Select>
+                  <InputNumber
+                    min={1}
+                    max={6}
+                    defaultValue={1}
+                    onChange={onChange}
+                  />
+                </Space>
               </div>
             </div>
-            <button type="submit" className="btn btn-primary col-md-12">
-              Make a Reservation
-            </button>
+            <Button className="my-button" type="primary">
+              Make a reservation
+            </Button>
           </form>
         </div>
       </div>

@@ -30,6 +30,10 @@ const Booking = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleDate();
+    handlePeople();
+    handleFirstName();
+    console.log(handleDate().value);
 
     // Send info to db to save the booking
   };
@@ -45,6 +49,7 @@ const Booking = () => {
                 type="text"
                 className="form-control"
                 id="firstName"
+                required
                 onChange={handleFirstName}
                 placeholder="ex. Ann"
               />
@@ -55,6 +60,7 @@ const Booking = () => {
                 type="text"
                 className="form-control"
                 onChange={handleLastName}
+                required
                 id="lastName"
                 placeholder="ex. Jonsson"
               />
@@ -67,6 +73,7 @@ const Booking = () => {
                 type="text"
                 className="form-control"
                 id="email"
+                required
                 onChange={handleEmail}
                 placeholder="ex. ann.jonsson@hotmail.com"
               />
@@ -77,6 +84,7 @@ const Booking = () => {
                 type="text"
                 className="form-control"
                 id="phoneNumber"
+                required
                 onChange={handlePhone}
                 placeholder="ex. 0701236986"
               />
@@ -89,12 +97,18 @@ const Booking = () => {
                 type="date"
                 className="form-control"
                 id="date"
+                required
                 onChange={handleDate}
               />
             </div>
             <div className="form-group col-md-4">
               <label htmlFor="time">Time</label>
-              <select id="time" className="form-control" onChange={handleTime}>
+              <select
+                id="time"
+                className="form-control"
+                onChange={handleTime}
+                required
+              >
                 <option disabled selected>
                   Choose time
                 </option>
@@ -107,6 +121,7 @@ const Booking = () => {
               <select
                 id="time"
                 className="form-control"
+                required
                 onChange={handlePeople}
               >
                 <option disabled selected>

@@ -10,6 +10,7 @@ import AdminCreate from "./components/AdminCreate";
 import AdminBookings from "./components/AdminBookings";
 import AdminSettings from "./components/AdminSettings";
 import AdminPanel from "./components/AdminPanel";
+import Privacy from "./components/Privacy";
 
 
 class App extends React.Component {
@@ -26,6 +27,7 @@ class App extends React.Component {
             <Route path="/adminbookings" component={AdminBookings} />
             <Route path="/adminsettings" component={AdminSettings} />
             <Route path="/adminbookings" component={AdminPanel} />
+            <Route path='/privacy' component={Privacy} />
           </Switch>
         </div>
       </BrowserRouter>

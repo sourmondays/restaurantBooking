@@ -12,7 +12,7 @@ const Bookings = () => {
 
 
   const getBookings = async () => {
-    const res = await Axios.get('http://localhost:3001/booking');
+    const res = await Axios.get('http://localhost:3001/bookings');
     console.log(res.data);
     return res.data;
   }

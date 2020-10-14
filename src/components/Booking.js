@@ -1,5 +1,6 @@
 import React from "react";
 import { DatePicker, Space, Select, Button, InputNumber, Input } from "antd";
+import { Link } from "react-router-dom";
 const Booking = () => {
 
 
@@ -58,6 +59,17 @@ const Booking = () => {
                 </Space>
               </div>
             </div>
+                                    <div>
+                            <div className="checkGDPR">
+                                <input
+                                    type="checkbox"
+                                    className="checkBox"
+                                    value=""
+                                    required
+                                />
+                                <p className="pickInfo gdprText">I agree to GDPR Read more here about <Link to="/privacy" >our privacy policy</Link></p>
+                            </div>
+                        </div>
             <Button className="my-button" type="primary">
               Make a reservation
             </Button>

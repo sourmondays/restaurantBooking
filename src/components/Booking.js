@@ -2,13 +2,13 @@ import React from "react";
 import moment from 'moment';
 import { DatePicker, Space, Select, Button, InputNumber, Input } from "antd";
 import { Link } from "react-router-dom";
+// import { convertLegacyProps } from "antd/lib/button/button";
 
 
 const Booking = () => {
   //Datepicker
-  function onChange(date, dateString) {
-    console.log(date, dateString);
-  }
+
+
 
   //Not possible to select dates before today
   function disabledDate(current) {
@@ -19,27 +19,47 @@ const Booking = () => {
   const { Option } = Select;
 
   function handleChange(value) {
-    console.log(`selected ${value}`);
+    console.log(value.format());
   }
+    function onChange(date) {
+    console.log(date);
+  }
+
+    function handleChangeFirstName(value) {
+    console.log(value.target.value);
+  }
+     function handleChangeLastName(value) {
+    console.log(value.target.value);
+  }  
+     function handleChangeEmail(value) {
+    console.log(value.target.value);
+  }
+       function handleChangePhone(value) {
+    console.log(value.target.value);
+  }
+
+  
+
+ 
   return (
     <>
       <div className="text-center align-items-center m-5">
         <h1>Table Booking</h1>
         <div className="container-booking">
-          <form onSubmit="">
+          <form>
             <div className="form-row justify-content-center">
               <div className="form-group col-md-6">
                 <Space direction="horizonta">
-                  <Input placeholder="First name" />
-                  <Input placeholder="Last name" />
+                  <Input type="text" name="firstName" onChange={handleChangeFirstName} placeholder="First name" />
+                  <Input type="text" name="lastName" onChange={handleChangeLastName} placeholder="Last name" />
                 </Space>
               </div>
             </div>
             <div className="form-row justify-content-center">
               <div className="form-group col-md-6">
                 <Space direction="horizonta">
-                  <Input placeholder="Email" />
-                  <Input placeholder="Phone" />
+                  <Input type="email" name="email" onChange={handleChangeEmail} placeholder="Email" />
+                  <Input type="tel" name="phone" onChange={handleChangePhone} placeholder="Phone" />
                 </Space>
               </div>
             </div>
@@ -48,7 +68,7 @@ const Booking = () => {
                 <Space direction="horizontal">
                   <DatePicker format="YYYY-MM-DD" disabledDate={disabledDate} onChange={onChange} />
                   <Select
-                    defaultValue="18.00"
+                    defaultValue=""
                     style={{ width: 120 }}
                     onChange={handleChange}
                   >
@@ -58,8 +78,9 @@ const Booking = () => {
                   <InputNumber
                     min={1}
                     max={6}
-                    defaultValue={1}
+                    defaultValue={""}
                     onChange={onChange}
+                    placeholder="size"
                   />
                 </Space>
               </div>
@@ -73,7 +94,7 @@ const Booking = () => {
                   />
                   <p className="BookingGdpr">I agree to GDPR Read more here about <Link to="/privacy" >our privacy policy</Link></p>
               </div>
-            <Button className="my-button" type="primary">
+            <Button className="btn btn-lg" type="primary">
               Make a reservation
             </Button>
           </form>

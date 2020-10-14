@@ -100,7 +100,7 @@ const Bookings = () => {
                   <td>{bookings.phone}</td>
                   <td>{bookings.noPersons}</td>
                   <td>  <Button className="my-button" type="primary">Edit</Button></td>
-                  <td> <Button className="my-button" type="danger" onClick={(e) => deleteRow(bookings.id, e)}>Delete</Button></td>
+                  <td> <Button className="my-button" type="danger" onClick={(e) => deleteRow(bookings._id)}>Delete</Button></td>
                 </>
               </tr>
             </tbody>

@@ -11,6 +11,7 @@ import AdminBookings from "./components/AdminBookings";
 import AdminSettings from "./components/AdminSettings";
 import AdminPanel from "./components/AdminPanel";
 import Privacy from "./components/Privacy";
+import NotFound from "./components/NotFound";
 
 
 class App extends React.Component {
@@ -28,6 +29,7 @@ class App extends React.Component {
             <Route path="/adminsettings" component={AdminSettings} />
             <Route path="/adminbookings" component={AdminPanel} />
             <Route path='/privacy' component={Privacy} />
+            <Route path="" component={NotFound} />
           </Switch>
         </div>
       </BrowserRouter>

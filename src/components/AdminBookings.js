@@ -1,50 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AdminPanel from "./AdminPanel";
 import { DatePicker, Space, Select, Button } from 'antd';
 import Axios from 'axios';
-import { useQuery } from 'react-query';
+// import { useQuery } from 'react-query';
 import moment from 'moment';
 
 const Bookings = () => {
-  const getBookings = async () => {
-    const res = await Axios.get('http://localhost:3001/bookings');
-    console.log(res.data);
-    return res.data;
+  const [bookings, setBookings] = useState([])
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  const getData = async () => {
+    const response = await Axios.get('http://localhost:4000/bookings')
+    console.log(response);
+
+    setBookings(response.data.data.bookings)
+  }
+
+  const removeData = (_id) => {
+    Axios.delete(`http://localhost:4000/bookings/${_id}`).then(res => {
+      const del = bookings.filter(bookings => _id !== bookings._id)
+      setBookings(del)
+      console.log('res', res)
+    })
   }
 
   const getBookingsDateAndTime = async () => {
-    const res = await Axios.get('http://localhost:3001/bookings/date/2022-11-23/19:00');
+    const res = await Axios.get('http://localhost:4000/bookings/date/2022-11-23/19:00');
     console.log(res.data);
     return res.data;
   }
 
   // http://localhost:3001/bookings/date/2022-11-23/19:00
-
-
-  const deleteRow = async (id, e) => {
-    Axios.delete(`http://localhost:3001/bookings/${id}`)
-  }
-
-  // axios.delete("url", { params: { id: itemId } }).then(response => {
-  //   console.log(response);
-
-  const { data, isLoading, error } = useQuery(['bookings'], getBookings, {
-  });
-
-  if (isLoading) {
-    return (
-      <h2>Loading...</h2>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="alert alert-warning">
-        <h2>Someting went wrong when trying to get all bookings.</h2>
-        <p><strong>Error message:</strong> {error.message}</p>
-      </div>
-    )
-  }
 
   //Datepicker 
   function onChange(date, dateString) {
@@ -91,23 +80,22 @@ const Bookings = () => {
               <th scope="col">Delete</th>
             </tr>
           </thead>
-          {data.data.bookings.map(bookings => (
+          {bookings.map(bookings => (
             <tbody>
               <tr>
                 <>
-                  <th scope="row">{bookings.firstName}{" "}{bookings.lastName}</th>
+                  <th key="0" scope="row">{bookings.firstName}{" "}{bookings.lastName}</th>
                   <td>{bookings.date}</td>
                   <td>{bookings.phone}</td>
                   <td>{bookings.noPersons}</td>
                   <td>  <Button className="my-button" type="primary">Edit</Button></td>
-                  <td> <Button className="my-button" type="danger" onClick={(e) => deleteRow(bookings.id, e)}>Delete</Button></td>
+                  <td> <Button className="my-button" type="danger" onClick={() => removeData(bookings._id)}>Delete</Button></td>
                 </>
               </tr>
             </tbody>
           ))}
         </table>
       </div>
-
     </div>
   );
 };

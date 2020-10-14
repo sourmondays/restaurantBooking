@@ -64,17 +64,15 @@ const Booking = () => {
                 </Space>
               </div>
             </div>
-                                    <div>
-                            <div className="checkGDPR">
-                                <input
-                                    type="checkbox"
-                                    className="checkBox"
-                                    value=""
-                                    required
-                                />
-                                <p className="pickInfo gdprText">I agree to GDPR Read more here about <Link to="/privacy" >our privacy policy</Link></p>
-                            </div>
-                        </div>
+                <div className="GDPR">
+                  <input
+                      type="checkbox"
+                      className="checkBox"
+                      value=""
+                      required
+                  />
+                  <p className="pickInfo gdprText">I agree to GDPR Read more here about <Link to="/privacy" >our privacy policy</Link></p>
+              </div>
             <Button className="my-button" type="primary">
               Make a reservation
             </Button>

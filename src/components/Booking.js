@@ -1,14 +1,18 @@
 import React from "react";
+import moment from 'moment';
 import { DatePicker, Space, Select, Button, InputNumber, Input } from "antd";
+
 const Booking = () => {
-
-
-
-
   //Datepicker
   function onChange(date, dateString) {
     console.log(date, dateString);
   }
+
+  //Not possible to select dates before today
+  function disabledDate(current) {
+    return current && current < moment().subtract(1, 'day');
+  }
+
   //Select
   const { Option } = Select;
 
@@ -40,7 +44,7 @@ const Booking = () => {
             <div className="form-row justify-content-center">
               <div className="form-group col-md-6">
                 <Space direction="horizontal">
-                  <DatePicker onChange={onChange} />
+                  <DatePicker format="YYYY-MM-DD" disabledDate={disabledDate} onChange={onChange} />
                   <Select
                     defaultValue="18.00"
                     style={{ width: 120 }}

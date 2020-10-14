@@ -3,36 +3,26 @@ import AdminPanel from "./AdminPanel";
 import { DatePicker, Space, Select, Button } from 'antd';
 import Axios from 'axios';
 import { useQuery } from 'react-query';
-
-
+import moment from 'moment';
 
 const Bookings = () => {
-
-
-
-
   const getBookings = async () => {
     const res = await Axios.get('http://localhost:3001/bookings');
     console.log(res.data);
     return res.data;
   }
 
+  const getBookingsDateAndTime = async () => {
+    const res = await Axios.get('http://localhost:3001/bookings/date/2022-11-23/19:00');
+    console.log(res.data);
+    return res.data;
+  }
 
-  // const deleteSpecBooking = async () => {
-  //   const res = await Axios.delete('http://localhost:3001/booking');
-  //   console.log(res.data);
-  //   return res.data;
-  // }
+  // http://localhost:3001/bookings/date/2022-11-23/19:00
+
 
   const deleteRow = async (id, e) => {
-    Axios.delete(`http://localhost:3001/booking/${id}`)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-        const posts = this.state.bookings.filter(item => item.id !== id);
-        this.setState({ posts });
-
-      })
+    Axios.delete(`http://localhost:3001/bookings/${id}`)
   }
 
   // axios.delete("url", { params: { id: itemId } }).then(response => {
@@ -61,6 +51,11 @@ const Bookings = () => {
     console.log(date, dateString);
   }
 
+  //Not possible to select dates before today
+  function disabledDate(current) {
+    return current && current < moment().subtract(1, 'day');
+  }
+
   //Select 
   const { Option } = Select;
 
@@ -75,12 +70,12 @@ const Bookings = () => {
         <h1>Bookings</h1>
         <p>Here you can see all bookings for your restaurant and also see who booked at a specfic date.</p>
         <Space direction="horizontal">
-          <DatePicker onChange={onChange} />
+          <DatePicker format="YYYY-MM-DD" disabledDate={disabledDate} onChange={onChange} />
           <Select defaultValue="18.00" style={{ width: 120 }} onChange={handleChange}>
             <Option value="18.00">18.00</Option>
             <Option value="21.00">21.00</Option>
           </Select>
-          <Button className="my-button" type="primary">Filter</Button>
+          <Button className="my-button" type="primary" onClick={getBookingsDateAndTime}>Filter</Button>
         </Space>
       </div>
 

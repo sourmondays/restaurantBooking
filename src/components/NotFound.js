@@ -1,20 +1,19 @@
 import React from 'react'
-import { Button,Row,Col} from 'antd'
+import { Button,Space} from 'antd'
 import { Link } from "react-router-dom";
 
 const notFound = () => {
     return (
         <>
-            <Row justify="center" align="middle">
-      <Col span={4}>
-          <h1 className="header">404</h1>
-          
-            <Col>
-            <Link to="/" ><Button type="primary">Back</Button></Link>
-            </Col>
-      </Col>
+        <div className="middle">
 
-    </Row>
+            <Space direction="vertical">
+          <h1 className="fof">404</h1>  
+          <Link to="/" ><Button className="fof-btn" type="primary">Back</Button></Link>
+    </Space>
+    
+
+        </div>
        
         </>
     )

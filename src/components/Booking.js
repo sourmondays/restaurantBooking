@@ -71,7 +71,7 @@ const Booking = () => {
                       value=""
                       required
                   />
-                  <p className="pickInfo gdprText">I agree to GDPR Read more here about <Link to="/privacy" >our privacy policy</Link></p>
+                  <p className="BookingGdpr">I agree to GDPR Read more here about <Link to="/privacy" >our privacy policy</Link></p>
               </div>
             <Button className="my-button" type="primary">
               Make a reservation

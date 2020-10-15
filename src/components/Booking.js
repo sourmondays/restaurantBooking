@@ -69,7 +69,7 @@ const Booking = () => {
               <div className="form-group col-md-6">
                 <Space direction="horizontal">
                   <DatePicker format="YYYY-MM-DD" disabledDate={disabledDate} onChange={handleChange} />
-                  
+
                   <Select
                     defaultValue=""
                     style={{ width: 120 }}

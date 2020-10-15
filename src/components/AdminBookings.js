@@ -9,7 +9,6 @@ const Bookings = () => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
   const [time, setTime] = useState([])
 
-
   useEffect(() => {
     getData()
   }, [])
@@ -44,23 +43,18 @@ const Bookings = () => {
     setDate(dateString)
   }
 
-  function onChangeTime(value) {
-    console.log(value);
-    setTime(`${value}`)
-  }
-
   //Not possible to select dates before today
   function disabledDate(current) {
     return current && current < moment().subtract(1, 'day');
   }
 
-  //Select 
+  //Select time
   const { Option } = Select;
 
-  // function handleChange(value) {
-  //   console.log(`${value}`);
-  // }
-
+  function onChangeTime(value) {
+    console.log(value);
+    setTime(`${value}`)
+  }
 
   return (
     <div>
@@ -84,6 +78,7 @@ const Bookings = () => {
             <tr>
               <th scope="col">Name</th>
               <th scope="col">Date</th>
+              <th scope="col">Time</th>
               <th scope="col">Phone</th>
               <th scope="col">People</th>
               <th scope="col">Edit</th>
@@ -96,6 +91,7 @@ const Bookings = () => {
                 <>
                   <th key="0" scope="row">{bookings.firstName}{" "}{bookings.lastName}</th>
                   <td>{bookings.date}</td>
+                  <td>{bookings.time}</td>
                   <td>{bookings.phone}</td>
                   <td>{bookings.noPersons}</td>
                   <td>  <Button className="my-button" type="primary">Edit</Button></td>

@@ -7,6 +7,7 @@ import moment from 'moment';
 const Bookings = () => {
   const [bookings, setBookings] = useState([])
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
+  const [datetoday, setDateToday] = useState(moment().format('YYYY-MM-DD'))
   const [time, setTime] = useState([])
 
   useEffect(() => {
@@ -33,6 +34,13 @@ const Bookings = () => {
     console.log(response.data);
     setDate(response);
     setTime(response);
+    setBookings(response.data.data.bookings);
+  }
+
+  const getBookingsDate = async () => {
+    const response = await Axios.get(`http://localhost:4000/bookings/date/${datetoday}`);
+    console.log(response.data);
+    setDateToday(response);
     setBookings(response.data.data.bookings);
   }
 
@@ -69,6 +77,8 @@ const Bookings = () => {
             <Option value="21:00">21:00</Option>
           </Select>
           <Button className="my-button" type="primary" onClick={getBookingsDateAndTime}>Filter</Button>
+          <Button className="my-button" type="primary" onClick={getData}>All bookings</Button>
+          <Button className="my-button" type="primary" onClick={getBookingsDate} >Bookings today</Button>
         </Space>
       </div>
 

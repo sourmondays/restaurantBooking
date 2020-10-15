@@ -51,3 +51,12 @@ label {
   margin: 0%;
   font-size: 20rem;
 }
+.Card {
+  margin-top: 3rem !important;
+  display: flex;
+  justify-content: center;
+}
+
+.ant-card-bordered {
+  border: none !important;
+}

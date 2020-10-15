@@ -1,55 +1,80 @@
 import React from "react";
-
-const handlePassword = (e) => {
-  console.log(e.target.value);
+import { Form, Input, Button, Checkbox, Card} from 'antd';
+const layout = {
+  labelCol: {
+    span: 8,
+  },
+  wrapperCol: {
+    span: 16,
+  },
+};
+const tailLayout = {
+  wrapperCol: {
+    offset: 8,
+    span: 16,
+  },
 };
 
-const handleEmail = (e) => {
-  console.log(e.target.value);
-};
+const Admin = () => {
+  const onFinish = (values) => {
+    console.log('Success:', values);
+  };
 
-const handleLogginSubmit = (e) => {
-  e.preventDefault();
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
 
-  // Send info to db to save the booking
-};
-
-const Admin = (_) => {
   return (
-    <div className="text-center align-items-center mt-5">
-      <h1>Admin login</h1>
 
-      <div className="card mx-auto">
-        <div className="card-body">
-          <h5 className="card-title">Admin</h5>
-          <div className="form-group" onSubmit={handleLogginSubmit}>
-            <label htmlFor="exampleFormControlInput1">Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              id="exampleFormControlInput1"
-              onChange={handleEmail}
-              placeholder="name@example.com"
-            />
+   <Card className="Card">
+    <Form
+          {...layout}
+          name="basic"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+        >
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your username!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
 
-            <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                onChange={handlePassword}
-                id="Password"
-              />
-            </div>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your password!',
+              },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
 
-            <button className="btn btn-dark mt-3" type="submit">
-              Login
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+          <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+   </Card>
+   
+   
   );
 };
 

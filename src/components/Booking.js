@@ -21,13 +21,8 @@ const Booking = () => {
   function handleChange(data, dateString) {
     console.log(dateString.format());
   }
-<<<<<<< HEAD
-    function onChange(date) {
-    console.log(date.value);
-=======
   function onChange(date) {
     console.log(date);
->>>>>>> 8f0b5218879490a6fa35ebc52c7d0fe800f399f8
   }
 
   function handleChangeFirstName(value) {

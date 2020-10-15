@@ -7,7 +7,8 @@ import moment from 'moment';
 const Bookings = () => {
   const [bookings, setBookings] = useState([])
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
-  const [time, setTime] = useState(['18:00'])
+  const [time, setTime] = useState([])
+
 
   useEffect(() => {
     getData()
@@ -37,8 +38,15 @@ const Bookings = () => {
   }
 
   //Datepicker 
-  function onChange(dateString) {
+  function onChange(date, dateString) {
     console.log(dateString);
+    setDate(date)
+    setDate(dateString)
+  }
+
+  function onChangeTime(value) {
+    console.log(value);
+    setTime(`${value}`)
   }
 
   //Not possible to select dates before today
@@ -49,9 +57,10 @@ const Bookings = () => {
   //Select 
   const { Option } = Select;
 
-  function handleChange(value) {
-    console.log(`${value}`);
-  }
+  // function handleChange(value) {
+  //   console.log(`${value}`);
+  // }
+
 
   return (
     <div>
@@ -60,8 +69,8 @@ const Bookings = () => {
         <h1>Bookings</h1>
         <p>Here you can see all bookings for your restaurant and also see who booked at a specfic date.</p>
         <Space direction="horizontal">
-          <DatePicker setDate={setDate} format="YYYY-MM-DD" disabledDate={disabledDate} onChange={onChange} />
-          <Select defaultValue="18.00" style={{ width: 120 }} onChange={handleChange}>
+          <DatePicker setDate={setDate} disabledDate={disabledDate} onChange={onChange} selected={date} />
+          <Select selected={time} defaultValue="18.00" style={{ width: 120 }} onChange={onChangeTime}>
             <Option value="18:00">18:00</Option>
             <Option value="21:00">21:00</Option>
           </Select>

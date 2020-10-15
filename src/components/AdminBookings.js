@@ -67,7 +67,7 @@ const Bookings = () => {
       <AdminPanel />
       <div className="text-left mt-2 ml-5">
         <h1>Bookings</h1>
-        <p>Here you can see all bookings for your restaurant and also see who booked at a specfic date.</p>
+        <p>Here you can see all bookings for your restaurant and you can also see who booked at a specfic date.</p>
         <Space direction="horizontal">
           <DatePicker setDate={setDate} disabledDate={disabledDate} onChange={onChange} selected={date} />
           <Select selected={time} defaultValue="18.00" style={{ width: 120 }} onChange={onChangeTime}>

@@ -1,6 +1,6 @@
 import React from "react";
 import moment from 'moment';
-import { DatePicker, Space, Select, Button, InputNumber, Input } from "antd";
+import { DatePicker, Space, Select, Button, InputNumber, Input, Checkbox } from "antd";
 import { Link } from "react-router-dom";
 // import { convertLegacyProps } from "antd/lib/button/button";
 
@@ -21,26 +21,33 @@ const Booking = () => {
   function handleChange(data, dateString) {
     console.log(dateString.format());
   }
+<<<<<<< HEAD
     function onChange(date) {
     console.log(date.value);
+=======
+  function onChange(date) {
+    console.log(date);
+>>>>>>> 8f0b5218879490a6fa35ebc52c7d0fe800f399f8
   }
 
-    function handleChangeFirstName(value) {
+  function handleChangeFirstName(value) {
     console.log(value.target.value);
   }
-     function handleChangeLastName(value) {
-    console.log(value.target.value);
-  }  
-     function handleChangeEmail(value) {
+  function handleChangeLastName(value) {
     console.log(value.target.value);
   }
-       function handleChangePhone(value) {
+  function handleChangeEmail(value) {
+    console.log(value.target.value);
+  }
+  function handleChangePhone(value) {
     console.log(value.target.value);
   }
 
-  
+  //Checkbox
+  function onChangeBox(e) {
+    console.log(`checked = ${e.target.checked}`);
+  }
 
- 
   return (
     <>
       <div className="text-center align-items-center m-5">
@@ -49,7 +56,7 @@ const Booking = () => {
           <form>
             <div className="form-row justify-content-center">
               <div className="form-group col-md-6">
-                <Space direction="horizonta">
+                <Space direction="horizontal">
                   <Input type="text" name="firstName" onChange={handleChangeFirstName} placeholder="First name" />
                   <Input type="text" name="lastName" onChange={handleChangeLastName} placeholder="Last name" />
                 </Space>
@@ -86,15 +93,10 @@ const Booking = () => {
                 </Space>
               </div>
             </div>
-                <div className="GDPR">
-                  <input
-                      type="checkbox"
-                      className="checkBox"
-                      value=""
-                      required
-                  />
-                  <p className="BookingGdpr">I agree to GDPR Read more here about <Link to="/privacy" >our privacy policy</Link></p>
-              </div>
+
+            <Checkbox onChange={onChangeBox}>I agree to GDPR Read more here about <Link to="/privacy" >our privacy policy</Link></Checkbox>
+            <br />
+
             <Button className="btn btn-lg" type="primary">
               Make a reservation
             </Button>

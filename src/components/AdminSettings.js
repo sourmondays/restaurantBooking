@@ -16,7 +16,7 @@ const Settings = () => {
 
                 <p className="">Max seats</p>
                 <Space direction="horizontal">
-                    <InputNumber min={1} max={150} defaultValue={3} onChange={onChange} />
+                    <InputNumber min={1} max={90} defaultValue={3} onChange={onChange} />
                     <Button className="my-button" type="primary">Update</Button>
                 </Space>
 

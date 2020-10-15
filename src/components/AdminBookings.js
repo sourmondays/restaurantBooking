@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import AdminPanel from "./AdminPanel";
 import { DatePicker, Space, Select, Button } from 'antd';
 import Axios from 'axios';
-// import { useQuery } from 'react-query';
 import moment from 'moment';
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([])
+  const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
+  const [time, setTime] = useState([])
+
 
   useEffect(() => {
     getData()
@@ -28,16 +30,23 @@ const Bookings = () => {
   }
 
   const getBookingsDateAndTime = async () => {
-    const res = await Axios.get('http://localhost:4000/bookings/date/2022-11-23/19:00');
-    console.log(res.data);
-    return res.data;
+    const response = await Axios.get(`http://localhost:4000/bookings/date/${date}/${time}`);
+    console.log(response.data);
+    setDate(response);
+    setTime(response);
+    setBookings(response.data.data.bookings);
   }
-
-  // http://localhost:3001/bookings/date/2022-11-23/19:00
 
   //Datepicker 
   function onChange(date, dateString) {
-    console.log(date, dateString);
+    console.log(dateString);
+    setDate(date)
+    setDate(dateString)
+  }
+
+  function onChangeTime(value) {
+    console.log(value);
+    setTime(`${value}`)
   }
 
   //Not possible to select dates before today
@@ -48,9 +57,10 @@ const Bookings = () => {
   //Select 
   const { Option } = Select;
 
-  function handleChange(value) {
-    console.log(`selected ${value}`);
-  }
+  // function handleChange(value) {
+  //   console.log(`${value}`);
+  // }
+
 
   return (
     <div>
@@ -59,10 +69,10 @@ const Bookings = () => {
         <h1>Bookings</h1>
         <p>Here you can see all bookings for your restaurant and also see who booked at a specfic date.</p>
         <Space direction="horizontal">
-          <DatePicker format="YYYY-MM-DD" disabledDate={disabledDate} onChange={onChange} />
-          <Select defaultValue="18.00" style={{ width: 120 }} onChange={handleChange}>
-            <Option value="18.00">18.00</Option>
-            <Option value="21.00">21.00</Option>
+          <DatePicker setDate={setDate} disabledDate={disabledDate} onChange={onChange} selected={date} />
+          <Select selected={time} defaultValue="18.00" style={{ width: 120 }} onChange={onChangeTime}>
+            <Option value="18:00">18:00</Option>
+            <Option value="21:00">21:00</Option>
           </Select>
           <Button className="my-button" type="primary" onClick={getBookingsDateAndTime}>Filter</Button>
         </Space>

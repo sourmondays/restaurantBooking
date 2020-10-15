@@ -18,11 +18,11 @@ const Booking = () => {
   //Select
   const { Option } = Select;
 
-  function handleChange(value) {
-    console.log(value.format());
+  function handleChange(data, dateString) {
+    console.log(dateString.format());
   }
     function onChange(date) {
-    console.log(date);
+    console.log(date.value);
   }
 
     function handleChangeFirstName(value) {
@@ -66,14 +66,15 @@ const Booking = () => {
             <div className="form-row justify-content-center">
               <div className="form-group col-md-6">
                 <Space direction="horizontal">
-                  <DatePicker format="YYYY-MM-DD" disabledDate={disabledDate} onChange={onChange} />
+                  <DatePicker format="YYYY-MM-DD" disabledDate={disabledDate} onChange={handleChange} />
+                  
                   <Select
                     defaultValue=""
                     style={{ width: 120 }}
                     onChange={handleChange}
                   >
-                    <Option value="18.00">18.00</Option>
-                    <Option value="21.00">21.00</Option>
+                    <Option value="18:00">18.00</Option>
+                    <Option value="21:00">21.00</Option>
                   </Select>
                   <InputNumber
                     min={1}

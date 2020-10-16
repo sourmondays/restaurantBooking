@@ -72,7 +72,7 @@ const Bookings = () => {
         <p>Here you can see all bookings for your restaurant and you can also see who booked at a specfic date.</p>
         <Space direction="horizontal">
           <DatePicker setDate={setDate} disabledDate={disabledDate} onChange={onChange} selected={date} />
-          <Select selected={time} defaultValue="18.00" style={{ width: 120 }} onChange={onChangeTime}>
+          <Select selected={time} defaultValue="" style={{ width: 120 }} onChange={onChangeTime}>
             <Option value="18:00">18:00</Option>
             <Option value="21:00">21:00</Option>
           </Select>
@@ -95,15 +95,15 @@ const Bookings = () => {
               <th scope="col">Delete</th>
             </tr>
           </thead>
-          {bookings.map(bookings => (
-            <tbody>
+          {bookings.map((bookings, index) => (
+            <tbody key={index}>
               <tr>
                 <>
-                  <th key="0" scope="row">{bookings.firstName}{" "}{bookings.lastName}</th>
-                  <td>{bookings.date}</td>
-                  <td>{bookings.time}</td>
-                  <td>{bookings.phone}</td>
-                  <td>{bookings.noPersons}</td>
+                  <th  scope="row">{bookings.firstName}{" "}{bookings.lastName}</th>
+                  <td >{bookings.date}</td>
+                  <td >{bookings.time}</td>
+                  <td >{bookings.phone}</td>
+                  <td >{bookings.noPersons}</td>
                   <td>  <Button className="my-button" type="primary">Edit</Button></td>
                   <td> <Button className="my-button" type="danger" onClick={() => removeData(bookings._id)}>Delete</Button></td>
                 </>

@@ -37,7 +37,11 @@ const Settings = () => {
                     <label className="d-flex justify-content-center" htmlFor="name">Max seats</label>
 
                     <div className="form-group d-inline-flex justify-content-center">
+<<<<<<< HEAD
                         <input className="form-control input-sm" for="ex1" type="text" id="maxSeats" onChange={handleInputChange} className="form-control" placeholder="Enter seats" />
+=======
+                        <input for="ex1" type="text" id="maxSeats" onChange={handleInputChange} className="form-control mb-2" placeholder="Enter seats" />
+>>>>>>> 4495ab5feed442bf32cc29b55e44583f774acba9
                     </div>
 
                     <div className="button">

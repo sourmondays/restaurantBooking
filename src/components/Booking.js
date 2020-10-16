@@ -1,66 +1,122 @@
 import React, { useState } from "react";
 import moment from 'moment';
-import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Link } from "react-router-dom";
-// import { convertLegacyProps } from "antd/lib/button/button";
+
 
 
 const intaialValue = {
+    date:"",
     firstName:"",
     lastName:"",
-    email:"",
-    time:"",
     phone:"",
-    date:"",
-    noPeople:"",
-
+    email:"",
+    noPersons:"",
+    time:"",
 }
+
+
+
+
 const Booking = () => {
 
-  return (
-    <Form>
-      <Row form>
-        <Col md={4}>
-          <FormGroup>
-            <Label for="exampleEmail">Email</Label>
-            <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-          </FormGroup>
-        </Col>
-        <Col md={4}>
-          <FormGroup>
-            <Label for="examplePassword">Password</Label>
-            <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-          </FormGroup>
-        </Col>
-      </Row>
-      <FormGroup>
-        <Label for="exampleAddress">Address</Label>
-        <Input type="text" name="address" id="exampleAddress" placeholder="1234 Main St"/>
-      </FormGroup>
-      <FormGroup>
-        <Label for="exampleAddress2">Address 2</Label>
-        <Input type="text" name="address2" id="exampleAddress2" placeholder="Apartment, studio, or floor"/>
-      </FormGroup>
-      <Row form>
-        <Col md={6}>
-          <FormGroup>
-            <Label for="exampleCity">City</Label>
-            <Input type="text" name="city" id="exampleCity"/>
-          </FormGroup>
-        </Col>
-        <Col md={4}>
-          <FormGroup>
-            <Label for="exampleState">State</Label>
-            <Input type="text" name="state" id="exampleState"/>
-          </FormGroup>
-        </Col>
-        
+  const [reservation, setReservation] = useState(intaialValue);
 
-        
-      </Row>
-      <Button>Sign in</Button>
-    </Form>
-  );
+
+  const onChange = e =>{
+  console.log("log somthing to the console ",e.target.value);
+    setReservation({
+      ...reservation,
+      [e.target.id]:e.target.value
+    })
+}
+
+ const handleFormSubmit = (e) => {
+        e.preventDefault();
+
+        // mutate(seats)
+        console.log("Submitting works fine");
+    }
+  return (<>
+          <h1>Make a reservation</h1>
+      <div className="container-booking">
+        <form onSubmit={handleFormSubmit}>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label for="firstName">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="firstName"
+                placeholder="ex. Ann"
+                onChange={onChange}
+              />
+            </div>
+            <div className="form-group col-md-6">
+              <label for="lastName">Last Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="lastName"
+                placeholder="ex. Jonsson"
+                onChange={onChange}
+              />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label for="email">Email</label>
+              <input
+                type="text"
+                className="form-control"
+                id="email"
+                placeholder="ex. ann.jonsson@hotmail.com"
+                onChange={onChange}
+              />
+            </div>
+            <div className="form-group col-md-6">
+              <label for="phone">Phone </label>
+              <input
+                type="text"
+                className="form-control"
+                id="phone"
+                placeholder="ex. 0701236986"
+                onChange={onChange}
+              />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label for="date">Date</label>
+              <input type="date" className="form-control" id="date" onChange={onChange} />
+            </div>
+            <div className="form-group col-md-4">
+              <label for="time">Time</label>
+              <select id="time" className="form-control" onChange={onChange}>
+                <option selected>Choose time</option>
+                <option>18:00</option>
+                <option>21:00</option>
+              </select>
+            </div>
+            <div className="form-group col-md-2">
+              <label for="sizeparty">Party size</label>
+              <input
+                type="number"
+                className="form-control"
+                id="noPersons"
+                min="1"
+                max="6"
+                placeholder="1 - 6 people"
+                onChange={onChange}
+              />
+            </div>
+          </div>
+         <button type="submit" className="btn btn-primary col-md-12">
+            Make a Reservation
+          </button>
+        </form>
+      </div>
+      </>
+  )
 
 };
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AdminPanel from "./AdminPanel";
-import { DatePicker, Space, Select, Button } from 'antd';
+import { DatePicker, Space, Select } from 'antd';
 import Axios from 'axios';
 import moment from 'moment';
 
@@ -76,9 +76,9 @@ const Bookings = () => {
             <Option value="18:00">18:00</Option>
             <Option value="21:00">21:00</Option>
           </Select>
-          <Button className="my-button" type="primary" onClick={getBookingsDateAndTime}>Filter</Button>
-          <Button className="my-button" type="primary" onClick={getData}>All bookings</Button>
-          <Button className="my-button" type="primary" onClick={getBookingsDate} >Bookings today</Button>
+          <button type="button" class="btn btn-primary btn-sm" onClick={getBookingsDateAndTime}>Filter</button>
+          <button type="button" class="btn btn-primary btn-sm" onClick={getData}>All bookings</button>
+          <button type="button" class="btn btn-primary btn-sm" onClick={getBookingsDate} >Bookings today</button>
         </Space>
       </div>
 
@@ -104,8 +104,10 @@ const Bookings = () => {
                   <td >{bookings.time}</td>
                   <td >{bookings.phone}</td>
                   <td >{bookings.noPersons}</td>
-                  <td>  <Button className="my-button" type="primary">Edit</Button></td>
-                  <td> <Button className="my-button" type="danger" onClick={() => removeData(bookings._id)}>Delete</Button></td>
+                  <td><button type="button" class="btn btn-primary btn-sm">Edit</button></td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm" onClick={() => removeData(bookings._id)}>Delete</button>
+                  </td>
                 </>
               </tr>
             </tbody>

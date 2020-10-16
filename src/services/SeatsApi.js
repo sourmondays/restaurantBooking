@@ -7,7 +7,6 @@ const post = async (endpoint, data) => {
     return res.data
 }
 
-
 // Export 
 export const modifySeats = async (seats) => {
     return post(`/seats`, seats)

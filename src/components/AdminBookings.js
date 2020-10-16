@@ -65,7 +65,7 @@ const Bookings = () => {
   }
 
   return (
-    <div>
+    <>
       <AdminPanel />
       <div className="text-left mt-2 ml-5">
         <h1>Bookings</h1>
@@ -99,7 +99,7 @@ const Bookings = () => {
             <tbody key={index}>
               <tr>
                 <>
-                  <th  scope="row">{bookings.firstName}{" "}{bookings.lastName}</th>
+                  <th scope="row">{bookings.firstName}{" "}{bookings.lastName}</th>
                   <td >{bookings.date}</td>
                   <td >{bookings.time}</td>
                   <td >{bookings.phone}</td>
@@ -112,7 +112,7 @@ const Bookings = () => {
           ))}
         </table>
       </div>
-    </div>
+    </>
   );
 };
 

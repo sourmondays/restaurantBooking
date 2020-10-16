@@ -15,7 +15,7 @@ const Bookings = () => {
   }, [])
 
   const getData = async () => {
-    const response = await Axios.get('http://localhost:4000/bookings')
+    const response = await Axios.get('http://localhost:4000/bookings');
     console.log(response);
 
     setBookings(response.data.data.bookings)
@@ -72,7 +72,7 @@ const Bookings = () => {
         <p>Here you can see all bookings for your restaurant and you can also see who booked at a specfic date.</p>
         <Space direction="horizontal">
           <DatePicker setDate={setDate} disabledDate={disabledDate} onChange={onChange} selected={date} />
-          <Select selected={time} defaultValue="18.00" style={{ width: 120 }} onChange={onChangeTime}>
+          <Select selected={time} defaultValue="" style={{ width: 120 }} onChange={onChangeTime}>
             <Option value="18:00">18:00</Option>
             <Option value="21:00">21:00</Option>
           </Select>

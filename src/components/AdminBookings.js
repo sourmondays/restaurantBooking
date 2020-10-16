@@ -95,15 +95,15 @@ const Bookings = () => {
               <th scope="col">Delete</th>
             </tr>
           </thead>
-          {bookings.map(bookings => (
-            <tbody>
+          {bookings.map((bookings, index) => (
+            <tbody key={index}>
               <tr>
                 <>
-                  <th key="0" scope="row">{bookings.firstName}{" "}{bookings.lastName}</th>
-                  <td>{bookings.date}</td>
-                  <td>{bookings.time}</td>
-                  <td>{bookings.phone}</td>
-                  <td>{bookings.noPersons}</td>
+                  <th  scope="row">{bookings.firstName}{" "}{bookings.lastName}</th>
+                  <td >{bookings.date}</td>
+                  <td >{bookings.time}</td>
+                  <td >{bookings.phone}</td>
+                  <td >{bookings.noPersons}</td>
                   <td>  <Button className="my-button" type="primary">Edit</Button></td>
                   <td> <Button className="my-button" type="danger" onClick={() => removeData(bookings._id)}>Delete</Button></td>
                 </>

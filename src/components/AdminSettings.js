@@ -44,8 +44,9 @@ const Settings = () => {
                 </div> */}
 
                 <form onSubmit={handleFormSubmit}>
-                    <div className="form-froup">
-                        <label htmlFor="name">Seats</label>
+                <label className="d-flex justify-content-center" htmlFor="name">Seats</label>
+                    <div className="form-group d-inline-flex justify-content-center">
+                     
                         <input type="text" id="maxSeats" onChange={handleInputChange} className="form-control" placeholder="Enter seats" />
                     </div>
 

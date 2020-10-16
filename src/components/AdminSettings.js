@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AdminPanel from "./AdminPanel";
-// import { InputNumber, Button, Space } from 'antd';
+// import { InputNumber, Button, Space, Form } from 'antd';
 import { useMutation } from 'react-query';
 import { modifySeats } from '../services/SeatsApi'
 
@@ -34,27 +34,17 @@ const Settings = () => {
                 <h1 className="mb-1">Settings</h1>
                 <p className="mb-3">Here you can change max available seats for your restaurant.</p>
 
-
-                {/* <p className="">Max seats</p>
-                <div className="form-group">
-                    <Space direction="horizontal">
-                        <InputNumber id="seats" type="numbers" id="seats" min={1} max={90} defaultValue={3} onChange={handleInputChange} />
-                        <Button className="my-button" type="primary" >Update</Button>
-                    </Space>
-                </div> */}
-
                 <form onSubmit={handleFormSubmit}>
-                    <div className="form-froup">
-                        <label htmlFor="name">Seats</label>
-                        <input type="text" id="maxSeats" onChange={handleInputChange} className="form-control" placeholder="Enter seats" />
+                    <label className="d-flex justify-content-center" htmlFor="name">Max seats</label>
+
+                    <div className="form-group d-inline-flex justify-content-center">
+                        <input for="ex1" type="text" id="maxSeats" onChange={handleInputChange} className="form-control mb-2" placeholder="Enter seats" />
                     </div>
 
-                    <div className="d-flex justify-content-center">
-                        <button type="submit" className="btn btn-dark">Change</button>
+                    <div className="button">
+                        <button type="submit" className="btn btn-dark btn-sm">Update</button>
                     </div>
                 </form>
-
-
             </div>
         </>
     );

@@ -9,6 +9,6 @@ const post = async (endpoint, data) => {
 
 
 // Export 
-export const modifySeats = async (seats) => {
-    return post(`/seats`)
+export const modifyBookings = async (seats) => {
+    return post(`/bookings`)
 }

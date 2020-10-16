@@ -35,17 +35,10 @@ const Settings = () => {
                 <p className="mb-3">Here you can change max available seats for your restaurant.</p>
 
                 <form onSubmit={handleFormSubmit}>
-<<<<<<< HEAD
-                <label className="d-flex justify-content-center" htmlFor="name">Seats</label>
-                    <div className="form-group d-inline-flex justify-content-center">
-                     
-                        <input type="text" id="maxSeats" onChange={handleInputChange} className="form-control" placeholder="Enter seats" />
-=======
                     <label className="d-flex justify-content-center" htmlFor="name">Max seats</label>
 
                     <div className="form-group d-inline-flex justify-content-center">
                         <input for="ex1" type="text" id="maxSeats" onChange={handleInputChange} className="form-control mb-2" placeholder="Enter seats" />
->>>>>>> 3f441ccc13f753b743111304a085adf9763eec31
                     </div>
 
                     <div className="button">

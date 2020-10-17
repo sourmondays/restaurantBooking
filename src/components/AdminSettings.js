@@ -1,15 +1,18 @@
 import React, { useState } from "react";
+import { useQuery } from 'react-query'
 import AdminPanel from "./AdminPanel";
-import { useMutation } from 'react-query';
-import { modifySeats } from '../services/SeatsApi'
+import { useMutation, useQueryCache } from 'react-query';
+import { modifySeats, showSeats } from '../services/SeatsApi'
 
 const intaialValue = {
     maxSeats: null,
 }
 
 const Settings = () => {
+    const { data } = useQuery(['showMaxSeats'], showSeats);
     const [mutate] = useMutation(modifySeats);
     const [seats, setSeats] = useState(intaialValue);
+    const queryCache = useQueryCache();
 
     const handleInputChange = e => {
         console.log("Something changed, target", e.target.id, e.target.value);
@@ -22,8 +25,19 @@ const Settings = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        mutate(seats)
+        // mutate(seats)
         console.log("Submitting seats...");
+
+        mutate(seats, {
+            onSucces: () => {
+                console.log("Mutating...");
+
+                queryCache.invalidateQueries('showMaxSeats')
+
+                // Empty form 
+                setSeats(intaialValue);
+            }
+        })
     }
 
     return (
@@ -34,15 +48,18 @@ const Settings = () => {
                 <p className="mb-3">Here you can change max available seats for your restaurant.</p>
 
                 <form onSubmit={handleFormSubmit}>
-                    <label className="d-flex justify-content-center" htmlFor="name">Max seats</label>
 
                     <div className="form-group d-inline-flex justify-content-center">
-<<<<<<< HEAD
-                        <input className="form-control input-sm" for="ex1" type="text" id="maxSeats" onChange={handleInputChange} className="form-control" placeholder="Enter seats" />
-=======
-                        <input for="ex1" type="text" id="maxSeats" onChange={handleInputChange} className="form-control mb-2" placeholder="Enter seats" />
->>>>>>> 4495ab5feed442bf32cc29b55e44583f774acba9
+                        <input type="number"
+                            className="form-control input-sm"
+                            id="maxSeats"
+                            min="1"
+                            max="150"
+                            placeholder="Enter seats"
+                            onChange={handleInputChange} />
                     </div>
+
+                    <h4>{data} seats available</h4>
 
                     <div className="button">
                         <button type="submit" className="btn btn-dark btn-sm">Update</button>

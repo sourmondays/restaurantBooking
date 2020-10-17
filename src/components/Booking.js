@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from 'react-query';
-import moment from "moment";
-
 import { modifyBookings } from '../services/BookingsApi'
-
-
 
 const intaialValue = {
     date:"",
@@ -19,10 +15,7 @@ const intaialValue = {
 const Booking = () => {
 
   // disable past dates
-const yesterday = moment().subtract(1, 'day');
-const disablePastDt = current => {
-  return current.isBefore(yesterday);
-};
+
      const [mutate] = useMutation(modifyBookings);
 
   const [reservation, setReservation] = useState(intaialValue);
@@ -50,7 +43,7 @@ const disablePastDt = current => {
         <form onSubmit={handleFormSubmit}>
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label for="firstName">Name</label>
+              <label htmlFor="firstName">Name</label>
               <input
                 type="text"
                 className="form-control"
@@ -60,7 +53,7 @@ const disablePastDt = current => {
               />
             </div>
             <div className="form-group col-md-6">
-              <label for="lastName">Last Name</label>
+              <label htmlFor="lastName">Last Name</label>
               <input
                 type="text"
                 className="form-control"
@@ -72,7 +65,7 @@ const disablePastDt = current => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="text"
                 className="form-control"
@@ -82,7 +75,7 @@ const disablePastDt = current => {
               />
             </div>
             <div className="form-group col-md-6">
-              <label for="phone">Phone </label>
+              <label htmlFor="phone">Phone </label>
               <input
                 type="text"
                 className="form-control"
@@ -94,19 +87,19 @@ const disablePastDt = current => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label for="date">Date</label>
-              <input type="date" className="form-control" id="date" isValidDate={disablePastDt} onChange={onChange} />
+              <label htmlFor="date">Date</label>
+              <input type="date" className="form-control" id="date" onChange={onChange} />
             </div>
             <div className="form-group col-md-4">
-              <label for="time">Time</label>
+              <label htmlFor="time">Time</label>
               <select id="time" className="form-control" onChange={onChange}>
-                <option selected>Choose time</option>
+                <option  defaultValue >Choose time</option>
                 <option>18:00</option>
                 <option>21:00</option>
               </select>
             </div>
             <div className="form-group col-md-2">
-              <label for="sizeparty">Party size</label>
+              <label htmlFor="sizeparty">Party size</label>
               <input
                 type="number"
                 className="form-control"

@@ -76,9 +76,9 @@ const Bookings = () => {
             <Option value="18:00">18:00</Option>
             <Option value="21:00">21:00</Option>
           </Select>
-          <button type="button" class="btn btn-primary btn-sm" onClick={getBookingsDateAndTime}>Filter</button>
-          <button type="button" class="btn btn-primary btn-sm" onClick={getData}>All bookings</button>
-          <button type="button" class="btn btn-primary btn-sm" onClick={getBookingsDate} >Bookings today</button>
+          <button type="button" className="btn btn-primary btn-sm" onClick={getBookingsDateAndTime}>Filter</button>
+          <button type="button" className="btn btn-primary btn-sm" onClick={getData}>All bookings</button>
+          <button type="button" className="btn btn-primary btn-sm" onClick={getBookingsDate} >Bookings today</button>
         </Space>
       </div>
 
@@ -104,9 +104,9 @@ const Bookings = () => {
                   <td >{bookings.time}</td>
                   <td >{bookings.phone}</td>
                   <td >{bookings.noPersons}</td>
-                  <td><button type="button" class="btn btn-primary btn-sm">Edit</button></td>
+                  <td><button type="button" className="btn btn-primary btn-sm">Edit</button></td>
                   <td>
-                    <button type="button" class="btn btn-danger btn-sm" onClick={() => removeData(bookings._id)}>Delete</button>
+                    <button type="button" className="btn btn-danger btn-sm" onClick={() => removeData(bookings._id)}>Delete</button>
                   </td>
                 </>
               </tr>

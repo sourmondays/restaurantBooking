@@ -1,77 +1,128 @@
-import React from "react";
+
 import AdminPanel from "./AdminPanel";
-import { DatePicker, Space, Select, Button, InputNumber, Input } from "antd";
-import moment from 'moment';
+
+import React, { useState } from "react";
+import { useMutation } from 'react-query';
+import { modifyBookings } from '../services/BookingsApi'
+
+const intaialValue = {
+    date:"",
+    firstName:"",
+    lastName:"",
+    phone:"",
+    email:"",
+    noPersons:"",
+    time:"",
+}
 
 const Booking = () => {
-  //Datepicker
-  function onChange(date, dateString) {
-    console.log(date, dateString);
-  }
 
-  //Not possible to select dates before today
-  function disabledDate(current) {
-    return current && current < moment().subtract(1, 'day');
-  }
+  // disable past dates
 
-  //Select
-  const { Option } = Select;
+     const [mutate] = useMutation(modifyBookings);
 
-  function handleChange(value) {
-    console.log(`selected ${value}`);
-  }
-  return (
-    <>
-      <AdminPanel />
-      <div className="text-center align-items-center m-5">
-        <h1>Admin reservation</h1>
-        <div className="container-booking">
-          <form onSubmit="">
-            <div className="form-row justify-content-center">
-              <div className="form-group col-md-6">
-                <Space direction="horizonta">
-                  <Input placeholder="First name" />
-                  <Input placeholder="Last name" />
-                </Space>
-              </div>
+  const [reservation, setReservation] = useState(intaialValue);
+
+
+  const onChange = e =>{
+  console.log("log somthing to the console ",e.target.value);
+    setReservation({
+      ...reservation,
+      [e.target.id]:e.target.value
+    })
+}
+
+
+
+      const handleFormSubmit = (e) => {
+        e.preventDefault();
+
+        mutate(reservation)
+        console.log("Submitting reservations...");
+    }
+  return (<>
+  <AdminPanel />
+          <h1 className="text-center">Make a reservation</h1>
+      <div className="container-booking">
+        <form onSubmit={handleFormSubmit}>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label htmlFor="firstName">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="firstName"
+                placeholder="ex. Ann"
+                onChange={onChange}
+              />
             </div>
-            <div className="form-row justify-content-center">
-              <div className="form-group col-md-6">
-                <Space direction="horizonta">
-                  <Input placeholder="Email" />
-                  <Input placeholder="Phone" />
-                </Space>
-              </div>
+            <div className="form-group col-md-6">
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="lastName"
+                placeholder="ex. Jonsson"
+                onChange={onChange}
+              />
             </div>
-            <div className="form-row justify-content-center">
-              <div className="form-group col-md-6">
-                <Space direction="horizontal">
-                  <DatePicker format="YYYY-MM-DD" disabledDate={disabledDate} onChange={onChange} />
-                  <Select
-                    defaultValue="18.00"
-                    style={{ width: 120 }}
-                    onChange={handleChange}
-                  >
-                    <Option value="18.00">18.00</Option>
-                    <Option value="21.00">21.00</Option>
-                  </Select>
-                  <InputNumber
-                    min={1}
-                    max={6}
-                    defaultValue={1}
-                    onChange={onChange}
-                  />
-                </Space>
-              </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label htmlFor="email">Email</label>
+              <input
+                type="text"
+                className="form-control"
+                id="email"
+                placeholder="ex. ann.jonsson@hotmail.com"
+                onChange={onChange}
+              />
             </div>
-            <Button className="my-button" type="primary">
-              Make a reservation
-            </Button>
-          </form>
-        </div>
+            <div className="form-group col-md-6">
+              <label htmlFor="phone">Phone </label>
+              <input
+                type="text"
+                className="form-control"
+                id="phone"
+                placeholder="ex. 0701236986"
+                onChange={onChange}
+              />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label htmlFor="date">Date</label>
+              <input type="date" className="form-control" id="date" onChange={onChange} />
+            </div>
+            <div className="form-group col-md-4">
+              <label htmlFor="time">Time</label>
+              <select id="time" className="form-control" onChange={onChange}>
+                <option  defaultValue >Choose time</option>
+                <option>18:00</option>
+                <option>21:00</option>
+              </select>
+            </div>
+            <div className="form-group col-md-2">
+              <label htmlFor="sizeparty">Party size</label>
+              <input
+                type="number"
+                className="form-control"
+                id="noPersons"
+                min="1"
+                max="6"
+                placeholder="1 - 6 people"
+                onChange={onChange}
+              />
+            </div>
+          </div>
+         <button type="submit" className="btn btn-primary col-md-12">
+            Make a Reservation
+          </button>
+        </form>
       </div>
-    </>
-  );
+      </>
+  )
+
 };
 
 export default Booking;

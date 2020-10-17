@@ -38,7 +38,7 @@ const Booking = () => {
         console.log("Submitting reservations...");
     }
   return (<>
-          <h1>Make a reservation</h1>
+          <h1 className="text-center mt-5 " >Make a reservation</h1>
       <div className="container-booking">
         <form onSubmit={handleFormSubmit}>
           <div className="form-row">
@@ -110,6 +110,9 @@ const Booking = () => {
                 onChange={onChange}
               />
             </div>
+        
+            <p className="form-group col-lg-12 text-right mr-5">Bigger party then 6? Call us 08-35353535</p>
+          
           </div>
          <button type="submit" className="btn btn-primary col-md-12">
             Make a Reservation

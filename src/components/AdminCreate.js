@@ -42,7 +42,7 @@ const Booking = () => {
     }
   return (<>
   <AdminPanel />
-          <h1>Make a reservation</h1>
+          <h1 className="text-center">Make a reservation</h1>
       <div className="container-booking">
         <form onSubmit={handleFormSubmit}>
           <div className="form-row">

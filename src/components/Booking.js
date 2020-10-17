@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import moment from 'moment';
-import { Link } from "react-router-dom";
+import { useMutation } from 'react-query';
+import moment from "moment";
+
+import { modifyBookings } from '../services/BookingsApi'
 
 
 
@@ -14,10 +16,14 @@ const intaialValue = {
     time:"",
 }
 
-
-
-
 const Booking = () => {
+
+  // disable past dates
+const yesterday = moment().subtract(1, 'day');
+const disablePastDt = current => {
+  return current.isBefore(yesterday);
+};
+     const [mutate] = useMutation(modifyBookings);
 
   const [reservation, setReservation] = useState(intaialValue);
 
@@ -30,11 +36,13 @@ const Booking = () => {
     })
 }
 
- const handleFormSubmit = (e) => {
+
+
+      const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        // mutate(seats)
-        console.log("Submitting works fine");
+        mutate(reservation)
+        console.log("Submitting reservations...");
     }
   return (<>
           <h1>Make a reservation</h1>
@@ -87,7 +95,7 @@ const Booking = () => {
           <div className="form-row">
             <div className="form-group col-md-6">
               <label for="date">Date</label>
-              <input type="date" className="form-control" id="date" onChange={onChange} />
+              <input type="date" className="form-control" id="date" isValidDate={disablePastDt} onChange={onChange} />
             </div>
             <div className="form-group col-md-4">
               <label for="time">Time</label>

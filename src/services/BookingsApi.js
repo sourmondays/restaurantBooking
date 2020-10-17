@@ -8,6 +8,6 @@ const post = async (endpoint, data) => {
 }
 
 // Export 
-export const modifyBookings = async (seats) => {
-    return post(`/bookings`)
+export const modifyBookings = async (reservations) => {
+    return post(`/bookings`, reservations)
 }

@@ -1,9 +1,11 @@
 
 import AdminPanel from "./AdminPanel";
-
 import React, { useState } from "react";
 import { useMutation } from 'react-query';
 import { modifyBookings } from '../services/BookingsApi'
+import { Route } from 'react-router-dom'
+
+
 
 const intaialValue = {
     date:"",
@@ -16,7 +18,7 @@ const intaialValue = {
 }
 
 const Booking = () => {
-
+const navigation = Route();
   // disable past dates
 
      const [mutate] = useMutation(modifyBookings);
@@ -39,6 +41,7 @@ const Booking = () => {
 
         mutate(reservation)
         console.log("Submitting reservations...");
+        navigation('/thankyou')
     }
   return (<>
   <AdminPanel />
@@ -115,9 +118,13 @@ const Booking = () => {
               />
             </div>
           </div>
-         <button type="submit" className="btn btn-primary col-md-12">
-            Make a Reservation
-          </button>
+       
+            <button 
+            type="submit" 
+            className="btn btn-primary col-md-12">
+                Make a Admin Reservation
+              </button>
+        
         </form>
       </div>
       </>

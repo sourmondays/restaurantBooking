@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useQuery } from 'react-query'
+import React, { useState, useEffect } from "react";
+import { useQuery } from 'react-query';
 import AdminPanel from "./AdminPanel";
 import { useMutation, useQueryCache } from 'react-query';
 import { modifySeats, showSeats } from '../services/SeatsApi'
@@ -11,8 +11,29 @@ const intaialValue = {
 const Settings = () => {
     const { data } = useQuery(['showMaxSeats'], showSeats);
     const [mutate] = useMutation(modifySeats);
-    const [seats, setSeats] = useState(intaialValue);
+    const [seats, setSeats] = useState();
     const queryCache = useQueryCache();
+
+
+
+    // const updateSeats = (e) => {
+    //     Axios.post(`http://localhost:4000/seats`)
+
+    //     console.log("Something changed, target", e.target.id, e.target.value);
+
+    //     setSeats({
+    //         ...seats,
+    //         [e.target.id]: e.target.value
+    //     })
+    // }
+
+    useEffect(() => {
+        console.log("Effectiong");
+        return function () {
+
+        }
+
+    }, [seats]);
 
     const handleInputChange = e => {
         console.log("Something changed, target", e.target.id, e.target.value);
@@ -29,16 +50,21 @@ const Settings = () => {
         console.log("Submitting seats...");
 
         mutate(seats, {
-            onSucces: () => {
-                console.log("Mutating...");
+            onSucces: (data) => {
+                console.log("Mutating...", [data]);
 
-                queryCache.invalidateQueries('showMaxSeats')
+                //???? Uppdaterar inte direkt...
+                // queryCache.invalidateQueries('showMaxSeats', [data])
+                queryCache.refetchQueries('showMaxSeats');
+                console.log(data);
 
                 // Empty form 
                 setSeats(intaialValue);
             }
         })
     }
+
+
 
     return (
         <>
@@ -50,7 +76,6 @@ const Settings = () => {
                 <form onSubmit={handleFormSubmit}>
 
                     <div className="form-group d-inline-flex justify-content-center">
-<<<<<<< HEAD
                         <input type="number"
                             className="form-control input-sm"
                             id="maxSeats"
@@ -58,10 +83,8 @@ const Settings = () => {
                             max="150"
                             placeholder="Enter seats"
                             onChange={handleInputChange} />
-=======
-                        <input for="ex1" type="text" id="maxSeats" onChange={handleInputChange} className="form-control mb-2" placeholder="Enter seats" />
->>>>>>> 83370f2ec1400eda9f89514d2abc25c15d675eb2
                     </div>
+
 
                     <h4>{data} seats available</h4>
 

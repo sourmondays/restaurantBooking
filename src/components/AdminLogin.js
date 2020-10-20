@@ -1,82 +1,32 @@
 import React from "react";
-import { Form, Input, Button, Checkbox, Card } from 'antd';
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
-  },
-};
 
 const Admin = () => {
 
 
-  const onFinish = (values) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
   return (
-
-    <Card className="Card">
-      <Form
-        {...layout}
-        name="basic"
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your username!',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
-            Submit
-            </Button>
-        </Form.Item>
-      </Form>
-    </Card>
+    <div className=" d-flex text-center align-items-center">
+      <div className="card w-50 mx-auto mt-5">
+        <div className="card-body ">
 
 
+          <form>
+            <div className="form-group ">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+              <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div className="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+            </div>
+
+            <button type="submit" className="btn btn-dark">Submit</button>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
   );
 };
 

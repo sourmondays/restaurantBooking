@@ -32,10 +32,6 @@ class App extends React.Component {
               <Route path="/adminbookings" component={AdminBookings} />
               <Route path="/adminbookingsTwo" component={AdminBookingsTwo} />
               <Route path="/adminsettings" component={AdminSettings} />
-<<<<<<< HEAD
-              {/* <Route path="/adminbookings" component={AdminPanel} /> */}
-=======
->>>>>>> c86d00a4aad6711af3fdabe47f4159dc7b045c1f
               <Route path='/privacy' component={Privacy} />
               <Route path='/thankyou' component={ThankYou} />
               <Route path="" component={NotFound} />

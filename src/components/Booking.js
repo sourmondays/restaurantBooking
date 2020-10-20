@@ -15,9 +15,7 @@ const intaialValue = {
 
 const Booking = () => {
 
-  // disable past dates
-
-     const [mutate] = useMutation(modifyBookings);
+   const [mutate] = useMutation(modifyBookings);
 
   const [reservation, setReservation] = useState(intaialValue);
 

@@ -76,6 +76,7 @@ const Settings = () => {
                 <form onSubmit={handleFormSubmit}>
 
                     <div className="form-group d-inline-flex justify-content-center">
+<<<<<<< HEAD
                         <input type="number"
                             className="form-control input-sm"
                             id="maxSeats"
@@ -83,6 +84,9 @@ const Settings = () => {
                             max="150"
                             placeholder="Enter seats"
                             onChange={handleInputChange} />
+=======
+                        <input for="ex1" type="text" id="maxSeats" onChange={handleInputChange} className="form-control mb-2" placeholder="Enter seats" />
+>>>>>>> ded447ad7a4cd85f113dafa8572eb57d36246f52
                     </div>
 
 

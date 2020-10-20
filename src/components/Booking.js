@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useMutation } from 'react-query';
 import { modifyBookings } from '../services/BookingsApi'
 
+
 const intaialValue = {
   date: "",
   firstName: "",
@@ -14,6 +15,8 @@ const intaialValue = {
 }
 
 const Booking = () => {
+   const full18 = true;
+   const full21 =false;
 
    const [mutate] = useMutation(modifyBookings);
 
@@ -98,8 +101,8 @@ const history = useHistory();
               <label htmlFor="time">Time</label>
               <select id="time" className="form-control" required onChange={onChange}>
                 <option  defaultValue >Choose time</option>
-                <option>18:00</option>
-                <option>21:00</option>
+                <option value={'18:00'} disabled={full18 ? true : false}>18:00</option>
+                <option value={'21:00'} disabled={full21 ? true : false}>21:00</option>
               </select>
             </div>
             <div className="form-group col-md-2">

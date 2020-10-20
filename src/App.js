@@ -19,7 +19,6 @@ import ThankYou from "./components/ThankYou";
 class App extends React.Component {
   render() {
     return (
-<<<<<<< HEAD
       <>
         <BrowserRouter>
           <div className="App">
@@ -32,32 +31,14 @@ class App extends React.Component {
               <Route path="/adminbookings" component={AdminBookings} />
               <Route path="/adminbookingsTwo" component={AdminBookingsTwo} />
               <Route path="/adminsettings" component={AdminSettings} />
-              <Route path="/adminbookings" component={AdminPanel} />
               <Route path='/privacy' component={Privacy} />
+              <Route path='/thankyou' component={ThankYou} />
               <Route path="" component={NotFound} />
             </Switch>
           </div>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
       </>
-=======
-      <BrowserRouter>
-        <div className="App">
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Main} />
-            <Route path="/booking" component={Booking} />
-            <Route path="/admin" component={Admin} />
-            <Route path="/admincreate" component={AdminCreate} />
-            <Route path="/adminbookings" component={AdminBookings} />
-            <Route path="/adminsettings" component={AdminSettings} />
-            <Route path="/thankyou" component={ThankYou} />
-            <Route path='/privacy' component={Privacy} />
-            <Route path="" component={NotFound} />
-          </Switch>
-        </div>
-      </BrowserRouter>
->>>>>>> ded447ad7a4cd85f113dafa8572eb57d36246f52
     );
   }
 }

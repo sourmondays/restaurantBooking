@@ -3,6 +3,7 @@ import AdminPanel from "./AdminPanel";
 import { DatePicker, Space, Select } from 'antd';
 import Axios from 'axios';
 import moment from 'moment';
+import config from '../modules/config'
 
 const intaialValue = {
   date: null,
@@ -21,27 +22,32 @@ const Bookings = () => {
     setTime([intaialValue]);
   }
 
-
   useEffect(() => {
     getData()
   }, [])
 
   const getData = async () => {
-    const response = await Axios.get('http://localhost:4000/bookings');
+    const response = await Axios.get(config.API_HOST_ORIGINAL + '/adminbookings', {
+      headers: {
+        'Authorization': 'Bearer ' + config.getToken()
+      }
+    });
     console.log(response);
 
     setBookings(response.data.data.bookings)
   }
 
   const removeData = (_id) => {
-    Axios.delete(`http://localhost:4000/bookings/${_id}`).then(res => {
+    Axios.delete(config.API_HOST_ORIGINAL_ADMIN + `/${_id}`, {
+      headers: {
+        'Authorization': 'Bearer ' + config.getToken()
+      }
+    }).then(res => {
       const del = bookings.filter(bookings => _id !== bookings._id)
       setBookings(del)
       console.log('res', res)
-    })
+    });
   }
-
-
 
   const getBookingsDateAndTime = async () => {
     const response = await Axios.get(`http://localhost:4000/bookings/date/${datePicked}/${time}`);

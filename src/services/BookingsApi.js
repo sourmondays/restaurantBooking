@@ -14,6 +14,16 @@ const post = async (endpoint, data) => {
     return res.data
 }
 
+const postLogin = async (endpoint, data) => {
+    const res = await Axios.post('http://localhost:4000/admin' + endpoint, data, requestConfig);
+    return res.data
+}
+
+// Export post login 
+export const loginAdmin = async (login) => {
+    return postLogin(`/login`, login)
+}
+
 
 // Export post bookings 
 export const modifyBookings = async (reservations) => {

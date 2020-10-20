@@ -4,11 +4,23 @@ import { DatePicker, Space, Select } from 'antd';
 import Axios from 'axios';
 import moment from 'moment';
 
+const intaialValue = {
+  date: null,
+  time: null,
+}
+
 const Bookings = () => {
   const [bookings, setBookings] = useState([])
-  const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'))
-  const [datetoday, setDateToday] = useState(moment().format('YYYY-MM-DD'))
+  const [datetoday, setDateToday] = useState()
+  const [datePicked, setDatePicked] = useState()
+  // const [date, setDate] = useState()
   const [time, setTime] = useState([])
+
+  function add() {
+    setDatePicked([intaialValue]);
+    setTime([intaialValue]);
+  }
+
 
   useEffect(() => {
     getData()
@@ -29,16 +41,19 @@ const Bookings = () => {
     })
   }
 
+
+
   const getBookingsDateAndTime = async () => {
-    const response = await Axios.get(`http://localhost:4000/bookings/date/${date}/${time}`);
+    const response = await Axios.get(`http://localhost:4000/bookings/date/${datePicked}/${time}`);
     console.log(response.data);
-    setDate(response);
+
+    setDatePicked(response);
     setTime(response);
     setBookings(response.data.data.bookings);
   }
 
   const getBookingsDate = async () => {
-    const response = await Axios.get(`http://localhost:4000/bookings/date/${datetoday}`);
+    const response = await Axios.get(`http://localhost:4000/bookings/date/${moment(datetoday).format('YYYY-MM-DD')}`);
     console.log(response.data);
     setDateToday(response);
     setBookings(response.data.data.bookings);
@@ -47,8 +62,9 @@ const Bookings = () => {
   //Datepicker 
   function onChange(date, dateString) {
     console.log(dateString);
-    setDate(date)
-    setDate(dateString)
+    // setDatePicked(date)
+    setDatePicked(dateString)
+
   }
 
   //Not possible to select dates before today
@@ -71,14 +87,15 @@ const Bookings = () => {
         <h1>Bookings</h1>
         <p>Here you can see all bookings for your restaurant and you can also see who booked at a specfic date.</p>
         <Space direction="horizontal">
-          <DatePicker setDate={setDate} disabledDate={disabledDate} onChange={onChange} selected={date} />
+
+          <DatePicker setDate={add} disabledDate={disabledDate} onChange={onChange} />
           <Select selected={time} defaultValue="" style={{ width: 120 }} onChange={onChangeTime}>
             <Option value="18:00">18:00</Option>
             <Option value="21:00">21:00</Option>
           </Select>
-          <button type="button" className="btn btn-primary btn-sm" onClick={getBookingsDateAndTime}>Filter</button>
+          <button type="button" className="btn btn-primary btn-sm" onClick={() => getBookingsDateAndTime()}>Filter</button>
           <button type="button" className="btn btn-primary btn-sm" onClick={getData}>All bookings</button>
-          <button type="button" className="btn btn-primary btn-sm" onClick={getBookingsDate} >Bookings today</button>
+          <button type="button" className="btn btn-primary btn-sm" onClick={() => getBookingsDate()} >Bookings today</button>
         </Space>
       </div>
 

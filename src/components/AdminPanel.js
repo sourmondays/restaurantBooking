@@ -14,7 +14,11 @@ const AdminPanel = () => {
                 </Link>
 
                 <Link to="/adminsettings">
-                    <button type="button" className="btn btn-primary btn-sm">Settings</button>
+                    <button type="button" className="btn btn-primary btn-sm mr-2">Settings</button>
+                </Link>
+
+                <Link to="/adminbookingstwo">
+                    <button type="button" className="btn btn-primary btn-sm">Admin bookings 2</button>
                 </Link>
             </div>
         </div>

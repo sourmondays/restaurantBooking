@@ -4,6 +4,7 @@ import { DatePicker, Space, Select } from 'antd';
 import Axios from 'axios';
 import moment from 'moment';
 
+
 const intaialValue = {
   date: null,
   time: null,
@@ -11,10 +12,11 @@ const intaialValue = {
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([])
-  const [datetoday, setDateToday] = useState(intaialValue)
-  const [datePicked, setDatePicked] = useState(intaialValue)
+  const [datetoday, setDateToday] = useState()
+  const [datePicked, setDatePicked] = useState()
   // const [date, setDate] = useState()
   const [time, setTime] = useState([])
+
 
   function add() {
     setDatePicked([intaialValue]);
@@ -40,9 +42,7 @@ const Bookings = () => {
       console.log('res', res)
     })
   }
-const clearValues = () => {
-     console.log("now it would delete the input values in date and time");
-    }
+
 
 
   const getBookingsDateAndTime = async () => {
@@ -52,8 +52,9 @@ const clearValues = () => {
     setDatePicked(response);
     setTime(response);
     setBookings(response.data.data.bookings);
-    clearValues()
+    
   }
+
 
   const getBookingsDate = async () => {
     const response = await Axios.get(`http://localhost:4000/bookings/date/${moment(datetoday).format('YYYY-MM-DD')}`);
@@ -80,8 +81,10 @@ const clearValues = () => {
 
   function onChangeTime(value) {
     console.log(value);
-    setTime(`${value}`)
+    setTime(value)
   }
+
+ 
 
   return (
     <>

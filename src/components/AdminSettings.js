@@ -55,11 +55,12 @@ const Settings = () => {
                 // queryCache.invalidateQueries('showMaxSeats', [data])
                 queryCache.refetchQueries('showMaxSeats');
                 console.log(data);
-
+            
                 // Empty form 
                 setSeats(intaialValue);
             }
         })
+        
     }
 
 

@@ -3,7 +3,7 @@ import AdminPanel from "./AdminPanel";
 import React, { useState } from "react";
 import { useMutation } from 'react-query';
 import { modifyBookings } from '../services/BookingsApi'
-import { Route } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
 
 
@@ -18,7 +18,7 @@ const intaialValue = {
 }
 
 const Booking = () => {
-const navigation = Route();
+const navigat = useHistory();
   // disable past dates
 
      const [mutate] = useMutation(modifyBookings);
@@ -41,11 +41,11 @@ const navigation = Route();
 
         mutate(reservation)
         console.log("Submitting reservations...");
-        navigation('/thankyou')
+        navigat.push('/adminbookings')
     }
   return (<>
   <AdminPanel />
-          <h1 className="text-center">Make a reservation</h1>
+          <h1 className="text-center mt-5">Make a reservation</h1>
       <div className="container-booking">
         <form onSubmit={handleFormSubmit}>
           <div className="form-row">
@@ -57,6 +57,7 @@ const navigation = Route();
                 id="firstName"
                 placeholder="ex. Ann"
                 onChange={onChange}
+                required
               />
             </div>
             <div className="form-group col-md-6">
@@ -67,6 +68,7 @@ const navigation = Route();
                 id="lastName"
                 placeholder="ex. Jonsson"
                 onChange={onChange}
+                required
               />
             </div>
           </div>
@@ -79,6 +81,7 @@ const navigation = Route();
                 id="email"
                 placeholder="ex. ann.jonsson@hotmail.com"
                 onChange={onChange}
+                required
               />
             </div>
             <div className="form-group col-md-6">
@@ -89,17 +92,18 @@ const navigation = Route();
                 id="phone"
                 placeholder="ex. 0701236986"
                 onChange={onChange}
+                required
               />
             </div>
           </div>
           <div className="form-row">
             <div className="form-group col-md-6">
               <label htmlFor="date">Date</label>
-              <input type="date" className="form-control" id="date" onChange={onChange} />
+              <input type="date" className="form-control" id="date" onChange={onChange} required/>
             </div>
             <div className="form-group col-md-4">
               <label htmlFor="time">Time</label>
-              <select id="time" className="form-control" onChange={onChange}>
+              <select id="time" className="form-control" onChange={onChange} required >
                 <option  defaultValue >Choose time</option>
                 <option>18:00</option>
                 <option>21:00</option>
@@ -115,6 +119,7 @@ const navigation = Route();
                 max="6"
                 placeholder="1 - 6 people"
                 onChange={onChange}
+                required
               />
             </div>
           </div>

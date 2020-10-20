@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useMutation } from 'react-query';
 import { modifyBookings } from '../services/BookingsApi'
 
+
 const intaialValue = {
   date: "",
   firstName: "",
@@ -14,6 +15,8 @@ const intaialValue = {
 }
 
 const Booking = () => {
+   const full18 = true;
+   const full21 =false;
 
   const [mutate] = useMutation(modifyBookings);
 
@@ -88,11 +91,43 @@ const Booking = () => {
               required
             />
           </div>
+<<<<<<< HEAD
         </div>
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="date">Date</label>
             <input type="date" className="form-control" id="date" required onChange={onChange} />
+=======
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label htmlFor="date">Date</label>
+              <input type="date" className="form-control" id="date" required onChange={onChange} />
+            </div>
+            <div className="form-group col-md-4">
+              <label htmlFor="time">Time</label>
+              <select id="time" className="form-control" required onChange={onChange}>
+                <option  defaultValue >Choose time</option>
+                <option value={'18:00'} disabled={full18 ? true : false}>18:00</option>
+                <option value={'21:00'} disabled={full21 ? true : false}>21:00</option>
+              </select>
+            </div>
+            <div className="form-group col-md-2">
+              <label htmlFor="sizeparty">Party size</label>
+              <input
+                type="number"
+                className="form-control"
+                id="noPersons"
+                min="1"
+                max="6"
+                placeholder="1 - 6 people"
+                onChange={onChange}
+                required
+              />
+            </div>
+        
+            <p className="form-group col-lg-12 text-right mr-5">Bigger party then 6? Call us 08-35353535</p>
+          
+>>>>>>> 194cc1223e80372694cafbda142941808799427c
           </div>
           <div className="form-group col-md-4">
             <label htmlFor="time">Time</label>

@@ -12,8 +12,8 @@ const intaialValue = {
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([])
-  const [datetoday, setDateToday] = useState()
-  const [datePicked, setDatePicked] = useState()
+  const [datetoday, setDateToday] = useState(intaialValue)
+  const [datePicked, setDatePicked] = useState(intaialValue)
   // const [date, setDate] = useState()
   const [time, setTime] = useState([])
 
@@ -48,6 +48,13 @@ const Bookings = () => {
       console.log('res', res)
     });
   }
+<<<<<<< HEAD
+=======
+const clearValues = () => {
+     console.log("now it would delete the input values in date and time");
+    }
+
+>>>>>>> 194cc1223e80372694cafbda142941808799427c
 
   const getBookingsDateAndTime = async () => {
     const response = await Axios.get(`http://localhost:4000/bookings/date/${datePicked}/${time}`);
@@ -56,6 +63,7 @@ const Bookings = () => {
     setDatePicked(response);
     setTime(response);
     setBookings(response.data.data.bookings);
+    clearValues()
   }
 
   const getBookingsDate = async () => {

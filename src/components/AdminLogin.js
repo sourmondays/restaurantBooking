@@ -19,7 +19,7 @@ class Admin extends React.Component {
     e.preventDefault();
 
     console.log('Submitting login form', this.state);
-    Axios.post(config.API_HOST + '/login', this.state).then(res => {
+    Axios.post(config.API_HOST_ORIGINAL + '/admin/login', this.state).then(res => {
       console.log("Got response from login:", res.data);
       const access_token = res.data.data.access_token;
 
@@ -31,29 +31,25 @@ class Admin extends React.Component {
     })
   }
 
-
   render() {
     return (
       <>
-
         <div className=" d-flex text-center align-items-center">
           <div className="card w-50 mx-auto mt-5">
-            <div className="card-body ">
-
+            <div className="card-body">
 
               <form onSubmit={this.handleOnSubmit}>
                 <div className="form-group">
-                  <label htmlFor="email">Email address</label>
+                  <label className="label" htmlFor="email">Email address</label>
                   <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" onChange={this.handleOnChange} />
-                  <small id="emailHelp" className="form-text text-muted">Your email is nice.</small>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="password">Password</label>
+                  <label className="label" htmlFor="password">Password</label>
                   <input type="password" className="form-control" id="password" placeholder="Password" onChange={this.handleOnChange} />
                 </div>
 
-                <button type="submit" className="btn btn-dark btn-sm">Submit</button>
+                <button type="submit" className="btn btn-light btn-sm col-md-12 ">Log in</button>
               </form>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import AdminPanel from "./AdminPanel";
 import { DatePicker, Space, Select } from 'antd';
 import Axios from 'axios';
@@ -12,9 +13,9 @@ const intaialValue = {
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([])
-  const [datetoday, setDateToday] = useState()
-  const [datePicked, setDatePicked] = useState()
-  // const [date, setDate] = useState()
+  const [booking, setBooking] = useState([])
+  const [datetoday, setDateToday] = useState(intaialValue)
+  const [datePicked, setDatePicked] = useState(intaialValue)
   const [time, setTime] = useState([])
 
   function add() {
@@ -37,8 +38,20 @@ const Bookings = () => {
     setBookings(response.data.data.bookings)
   }
 
+  const getSpecBooking = async (_id) => {
+    Axios.get(config.API_HOST_ORIGINAL + `/adminbookings/${_id}`, {
+      headers: {
+        'Authorization': 'Bearer ' + config.getToken()
+      }
+    }).then(res => {
+      const getId = bookings.filter(bookings => _id !== bookings._id)
+      setBooking(res.data.data.bookings)
+      console.log('edit response', res.data.data.bookings);
+    });
+  }
+
   const removeData = (_id) => {
-    Axios.delete(config.API_HOST_ORIGINAL_ADMIN + `/${_id}`, {
+    Axios.delete(config.API_HOST_ORIGINAL + `/adminbookings/${_id}`, {
       headers: {
         'Authorization': 'Bearer ' + config.getToken()
       }
@@ -49,21 +62,26 @@ const Bookings = () => {
     });
   }
 
-  const getBookingsDateAndTime = async () => {
-    const response = await Axios.get(`http://localhost:4000/bookings/date/${datePicked}/${time}`);
-    console.log(response.data);
-
-    setDatePicked(response);
-    setTime(response);
-    setBookings(response.data.data.bookings);
-    
-  }
-
-
   const getBookingsDate = async () => {
-    const response = await Axios.get(`http://localhost:4000/bookings/date/${moment(datetoday).format('YYYY-MM-DD')}`);
+    const response = await Axios.get(config.API_HOST_ORIGINAL + `/adminbookings/date/${moment(datetoday).format('YYYY-MM-DD')}`, {
+      headers: {
+        'Authorization': 'Bearer ' + config.getToken()
+      }
+    });
     console.log(response.data);
     setDateToday(response);
+    setBookings(response.data.data.bookings);
+  }
+
+  const getBookingsDateAndTime = async () => {
+    const response = await Axios.get(config.API_HOST_ORIGINAL + `/adminbookings/date/${datePicked}/${time}`, {
+      headers: {
+        'Authorization': 'Bearer ' + config.getToken()
+      }
+    });
+    console.log(response.data);
+    setDatePicked(response);
+    setTime(response);
     setBookings(response.data.data.bookings);
   }
 
@@ -72,7 +90,6 @@ const Bookings = () => {
     console.log(dateString);
     // setDatePicked(date)
     setDatePicked(dateString)
-
   }
 
   //Not possible to select dates before today
@@ -88,16 +105,15 @@ const Bookings = () => {
     setTime(value)
   }
 
- 
+
 
   return (
     <>
       <AdminPanel />
       <div className="text-left mt-2 ml-5">
-        <h1>Bookings</h1>
-        <p>Here you can see all bookings for your restaurant and you can also see who booked at a specfic date.</p>
+        <h1 className="change-font mb-0">Bookings</h1>
+        <p className="change-font mt-1">Here you can see all bookings for your restaurant and you can also see who booked at a specfic date.</p>
         <Space direction="horizontal">
-
           <DatePicker setDate={add} disabledDate={disabledDate} onChange={onChange} />
           <Select selected={time} defaultValue="" style={{ width: 120 }} onChange={onChangeTime}>
             <Option value="18:00">18:00</Option>
@@ -131,7 +147,11 @@ const Bookings = () => {
                   <td >{bookings.time}</td>
                   <td >{bookings.phone}</td>
                   <td >{bookings.noPersons}</td>
-                  <td><button type="button" className="btn btn-primary btn-sm">Edit</button></td>
+
+                  <td><Link to={"/adminedit/" + bookings._id}>
+                    <button type="button" onClick={() => getSpecBooking(bookings._id)} className="btn btn-primary btn-sm">Edit</button>
+                  </Link></td>
+
                   <td>
                     <button type="button" className="btn btn-danger btn-sm" onClick={() => removeData(bookings._id)}>Delete</button>
                   </td>

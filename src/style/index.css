@@ -1,8 +1,8 @@
 body {
+  overflow-x: hidden;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -16,24 +16,96 @@ body {
 }
 
 .card {
-  max-width: 20rem;
+  max-width: 30rem;
 }
 
 .container-booking {
   margin-top: 3rem;
 }
 
-
-
 label {
   display: flex;
   justify-content: left;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .container-booking {
     padding-right: 3rem;
     padding-left: 3rem;
+  }
+  .col-lg {
+    padding: 0;
+  }
+  .row {
+    max-height: 100%;
+  }
+  .text-booking {
+    margin-top: 4.5rem;
+    color: whitesmoke;
+    font-family: 'Courgette', cursive;
+  }
+  .booking-form {
+    background-color: #006d77;
+    overflow: hidden;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+  .background-image {
+    overflow: hidden;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+  .completed {
+    color: whitesmoke;
+    margin-top: 10rem;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+  }
+  .completed2 {
+    color: whitesmoke;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    text-align: center;
+  }
+  .completed3 {
+    color: whitesmoke;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+  }
+  .completed4 {
+    color: whitesmoke;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+  }
+  .label {
+    color: whitesmoke;
+    font-family: 'Nunito', sans-serif;
+    margin-bottom: 0.2rem;
+  }
+  .btn {
+    font-family: 'Nunito', sans-serif;
+  }
+  .form-control {
+    font-family: 'Nunito', sans-serif;
+  }
+  /* Admin login  */
+  .card {
+    border: none;
+  }
+  .card-body {
+    margin-top: 8rem;
+    background-color: rgb(54, 207, 174);
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-radius: 1rem;
+  }
+  .change-font {
+    font-family: 'Nunito', sans-serif;
+  }
+  p {
+    font-family: 'Nunito', sans-serif;
   }
 }
 
@@ -52,13 +124,4 @@ label {
 .middle h1 {
   margin: 0%;
   font-size: 20rem;
-}
-.Card {
-  margin-top: 3rem !important;
-  display: flex;
-  justify-content: center;
-}
-
-.ant-card-bordered {
-  border: none !important;
 }

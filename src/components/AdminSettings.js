@@ -9,28 +9,17 @@ const intaialValue = {
 }
 
 const Settings = () => {
-    const { data } = useQuery(['showMaxSeats'], showSeats);
+    const { data, status } = useQuery(['showMaxSeats'], showSeats);
     const [mutate] = useMutation(modifySeats);
-    const [seats, setSeats] = useState();
+    const [seats, setSeats] = useState(intaialValue);
     const queryCache = useQueryCache();
 
-    // const updateSeats = (e) => {
-    //     Axios.post(`http://localhost:4000/seats`)
-
-    //     console.log("Something changed, target", e.target.id, e.target.value);
-
-    //     setSeats({
-    //         ...seats,
-    //         [e.target.id]: e.target.value
-    //     })
-    // }
 
     useEffect(() => {
         console.log("Effectiong");
         return function () {
 
         }
-
     }, [seats]);
 
     const handleInputChange = e => {
@@ -44,15 +33,13 @@ const Settings = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        // mutate(seats)
+        // Mutate(seats)
         console.log("Submitting seats...");
 
         mutate(seats, {
             onSucces: (data) => {
                 console.log("Mutating...", [data]);
 
-                //???? Uppdaterar inte direkt...
-                // queryCache.invalidateQueries('showMaxSeats', [data])
                 queryCache.refetchQueries('showMaxSeats');
                 console.log(data);
             
@@ -62,8 +49,6 @@ const Settings = () => {
         })
         
     }
-
-
 
     return (
         <>
@@ -84,11 +69,28 @@ const Settings = () => {
                             onChange={handleInputChange} />
                     </div>
 
-                    <h4>{data} seats available</h4>
+                    {status === 'loading' && (
+                        <div className="text-center align-items-center mb-2 mt-2">
+                            <p>Loading...</p>
+                        </div>
+                    )}
 
-                    <div className="button">
-                        <button type="submit" className="btn btn-dark btn-sm">Update</button>
-                    </div>
+                    {status === 'error' && (
+                        <div className="text-center align-items-center mb-2 mt-2">
+                            <p>Error when trying to get data.</p>
+                        </div>
+                    )}
+
+                    {status === 'success' && (
+                        <>
+                            {data.data.seats.map((seats, index) =>
+                                <h4 key={index}>{seats.maxSeats} seats available</h4>
+                            )}
+                            <div className="button">
+                                <button type="submit" className="btn btn-dark btn-sm">Update</button>
+                            </div>
+                        </>
+                    )}
                 </form>
             </div>
         </>

@@ -3,10 +3,11 @@ import Axios from 'axios';
 const requestConfig = {}
 
 const get = async (endpoint) => {
-    const res = await Axios.get('http://localhost:4000' + endpoint, requestConfig);
+    const res = await Axios.get('http://localhost:4000' + endpoint, requestConfig)
     console.log(res.data.data.seats[0].maxSeats);
-    return res.data.data.seats[0].maxSeats
+    return res.data
 }
+
 
 const post = async (endpoint, data) => {
     const res = await Axios.post('http://localhost:4000' + endpoint, data, requestConfig);
@@ -22,4 +23,3 @@ export const modifySeats = async (seats) => {
 export const showSeats = async () => {
     return get(`/seats`)
 }
-

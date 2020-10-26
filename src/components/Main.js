@@ -1,23 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from 'antd';
+import React, { useState, useReducer } from "react";
+import { UserReducer, DefaultUser } from "../Form/userReducer";
+import FormSteps from '../Form/formSteps';
 
-const Main = (props) => {
+const Main = () => {
+  let [step, setStep] = useState(0)
+  const [user, setUser] = useReducer(UserReducer, DefaultUser)
+  let steps = FormSteps(step, setStep, user, setUser)
+
   return (
-    <div>
-      <div className="text-center align-items-center mt-5">
+    <>
+      <div>
+        {/* <h1>Register User: {steps[`${step}`].title} </h1> */}
 
-        <h4 className="restaurant-header">
-          Make your reservation for a fancy dinner!
-          </h4>
+        <div>{steps[`${step}`].content}</div>
       </div>
-
-      <div className="text-center align-items-center mt-2">
-        <Link to="/booking">
-          <Button type="primary">Make a reservation</Button>
-        </Link>
-      </div>
-    </div>
+    </>
   );
 };
 

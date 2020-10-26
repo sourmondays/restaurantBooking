@@ -102,8 +102,10 @@ const Bookings = () => {
 
   function onChangeTime(value) {
     console.log(value);
-    setTime(`${value}`)
+    setTime(value)
   }
+
+
 
   return (
     <>

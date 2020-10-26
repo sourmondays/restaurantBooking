@@ -42,11 +42,12 @@ const Settings = () => {
 
                 queryCache.refetchQueries('showMaxSeats');
                 console.log(data);
-
+            
                 // Empty form 
                 setSeats(intaialValue);
             }
         })
+        
     }
 
     return (

@@ -10,8 +10,6 @@ const Main = () => {
   return (
     <>
       <div>
-        {/* <h1>Register User: {steps[`${step}`].title} </h1> */}
-
         <div>{steps[`${step}`].content}</div>
       </div>
     </>

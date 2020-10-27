@@ -139,7 +139,7 @@ export default function AdminEdit(props) {
 
                 <button
                     type="submit"
-                    className="btn btn-primary col-md-12">
+                    className="btn btn-primary btn-sm col-md-12">
                     Edit booking
               </button>
             </form>

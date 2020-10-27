@@ -1,6 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Input from './input'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Input from './input';
+import { Link } from 'react-router-dom';
 
 const FirstPage = ({ step, setStep, user, setUser }) => {
 
@@ -54,6 +55,11 @@ const FirstPage = ({ step, setStep, user, setUser }) => {
                         max="6"
                         required
                     />
+                </div>
+
+                <div className="form-group ml-4">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" required />
+                    <label className="form-check-label" for="exampleCheck1">I agree to the &nbsp; <Link to="/privacy"> Privacy Policy/GDPR</Link></label>
                 </div>
 
                 <button type="submit" className="btn btn-light btn-sm col-md-12 mt-2">

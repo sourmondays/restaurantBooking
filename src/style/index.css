@@ -110,6 +110,9 @@ label {
   label {
     font-family: 'Nunito', sans-serif;
   }
+  .form-check-label {
+    color: whitesmoke;
+  }
 }
 
 @media (min-width: 1100px) {

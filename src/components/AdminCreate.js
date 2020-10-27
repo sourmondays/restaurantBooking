@@ -49,7 +49,7 @@ const Booking = () => {
               type="text"
               className="form-control"
               id="firstName"
-              placeholder="First name..."
+              placeholder="First name"
               onChange={onChange}
               required
             />
@@ -60,7 +60,7 @@ const Booking = () => {
               type="text"
               className="form-control"
               id="lastName"
-              placeholder="Last name..."
+              placeholder="Last name"
               onChange={onChange}
               required
             />
@@ -73,7 +73,7 @@ const Booking = () => {
               type="text"
               className="form-control"
               id="email"
-              placeholder="Email address..."
+              placeholder="Email address"
               onChange={onChange}
               required
             />
@@ -84,7 +84,7 @@ const Booking = () => {
               type="text"
               className="form-control"
               id="phone"
-              placeholder="Phone..."
+              placeholder="Phone"
               onChange={onChange}
               required
             />
@@ -98,7 +98,7 @@ const Booking = () => {
           <div className="form-group col-md-4">
             <label htmlFor="time">Time</label>
             <select id="time" className="form-control" onChange={onChange} required >
-              <option defaultValue >Dinner time...</option>
+              <option defaultValue >Dinner time</option>
               <option>18:00</option>
               <option>21:00</option>
             </select>

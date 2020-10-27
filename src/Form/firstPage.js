@@ -23,7 +23,7 @@ const FirstPage = ({ step, setStep, user, setUser }) => {
                 <div className="form-group">
                     <label className="label" htmlFor="date" >Date</label>
                     <Input
-                        className="form-control" id="date" required
+                        className="form-control" id="date"
                         type="date"
                         name="date"
                         value={user.date}

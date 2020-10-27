@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import AdminPanel from "./AdminPanel";
 import { DatePicker, Space, Select } from 'antd';
 import Axios from 'axios';
@@ -11,9 +11,8 @@ const intaialValue = {
   time: null,
 }
 
-const Bookings = () => {
+const Bookings = (props) => {
   const [bookings, setBookings] = useState([])
-  const [booking, setBooking] = useState([])
   const [datetoday, setDateToday] = useState(intaialValue)
   const [datePicked, setDatePicked] = useState(intaialValue)
   const [time, setTime] = useState([])
@@ -38,16 +37,9 @@ const Bookings = () => {
     setBookings(response.data.data.bookings)
   }
 
-  const getSpecBooking = async (_id) => {
-    Axios.get(config.API_HOST_ORIGINAL + `/adminbookings/${_id}`, {
-      headers: {
-        'Authorization': 'Bearer ' + config.getToken()
-      }
-    }).then(res => {
-      const getId = bookings.filter(bookings => _id !== bookings._id)
-      setBooking(res.data.data.bookings)
-      console.log('edit response', res.data.data.bookings);
-    });
+  function Update(_id) {
+    console.log("Log this shiiiet to console", _id);
+    props.history.push("/adminedit/" + _id);
   }
 
   const removeData = (_id) => {
@@ -148,9 +140,13 @@ const Bookings = () => {
                   <td >{bookings.phone}</td>
                   <td >{bookings.noPersons}</td>
 
-                  <td><Link to={"/adminedit/" + bookings._id}>
+                  {/* <td><Link to={"/adminedit/" + bookings._id}>
                     <button type="button" onClick={() => getSpecBooking(bookings._id)} className="btn btn-primary btn-sm">Edit</button>
-                  </Link></td>
+                  </Link></td> */}
+
+                  <td>
+                    <button type="button" onClick={() => Update(bookings._id)} className="btn btn-primary btn-sm">Edit</button>
+                  </td>
 
                   <td>
                     <button type="button" className="btn btn-danger btn-sm" onClick={() => removeData(bookings._id)}>Delete</button>

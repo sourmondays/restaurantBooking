@@ -13,14 +13,22 @@ import AdminSettings from "./components/AdminSettings";
 import Privacy from "./components/Privacy";
 import NotFound from "./components/NotFound";
 
+
+
 class App extends React.Component {
   state = {
     token: false,
   }
 
+  // EditBooking = () => {
+  //   const { id } = useParams();
+  //   return <div>Now showing post {id}</div>;
+  // }
+
   render() {
     return (
       <>
+
         <BrowserRouter>
           <div className="App">
 
@@ -28,7 +36,7 @@ class App extends React.Component {
               <Route path="/admin" render={(props) => <Admin {...props} />} />
               <Route path="/admincreate" component={AdminCreate} />
               <Route path="/adminbookings" component={AdminBookings} />
-              <Route path="/adminedit" component={AdminEdit} />
+              <Route path="/adminedit/:id" component={AdminEdit} />
               <Route path="/adminsettings" component={AdminSettings} />
               <Route path='/privacy' component={Privacy} />
               <Layout>

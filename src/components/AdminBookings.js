@@ -38,7 +38,7 @@ const Bookings = (props) => {
   }
 
   function Update(_id) {
-    console.log("Log this shiiiet to console", _id);
+    console.log("Log id to console:", _id);
     props.history.push("/adminedit/" + _id);
   }
 
@@ -122,6 +122,7 @@ const Bookings = (props) => {
           <thead>
             <tr>
               <th scope="col">Name</th>
+              <th scope="col">Email</th>
               <th scope="col">Date</th>
               <th scope="col">Time</th>
               <th scope="col">Phone</th>
@@ -135,14 +136,11 @@ const Bookings = (props) => {
               <tr>
                 <>
                   <th scope="row">{bookings.firstName}{" "}{bookings.lastName}</th>
+                  <td >{bookings.email}</td>
                   <td >{bookings.date}</td>
                   <td >{bookings.time}</td>
                   <td >{bookings.phone}</td>
                   <td >{bookings.noPersons}</td>
-
-                  {/* <td><Link to={"/adminedit/" + bookings._id}>
-                    <button type="button" onClick={() => getSpecBooking(bookings._id)} className="btn btn-primary btn-sm">Edit</button>
-                  </Link></td> */}
 
                   <td>
                     <button type="button" onClick={() => Update(bookings._id)} className="btn btn-primary btn-sm">Edit</button>

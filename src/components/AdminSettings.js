@@ -3,12 +3,14 @@ import { useQuery } from 'react-query';
 import AdminPanel from "./AdminPanel";
 import { useMutation, useQueryCache } from 'react-query';
 import { modifySeats, showSeats } from '../services/SeatsApi'
+import { useHistory } from 'react-router-dom';
 
 const intaialValue = {
     maxSeats: null,
 }
 
 const Settings = () => {
+    const navigate = useHistory();
     const { data, status } = useQuery(['showMaxSeats'], showSeats);
     const [mutate] = useMutation(modifySeats);
     const [seats, setSeats] = useState(intaialValue);
@@ -33,7 +35,6 @@ const Settings = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
-        // Mutate(seats)
         console.log("Submitting seats...");
 
         mutate(seats, {
@@ -42,19 +43,19 @@ const Settings = () => {
 
                 queryCache.refetchQueries('showMaxSeats');
                 console.log(data);
-            
+
                 // Empty form 
                 setSeats(intaialValue);
             }
         })
-        
+        navigate.push('/adminbookings')
     }
 
     return (
         <>
             <AdminPanel />
             <div className="text-center align-items-center mt-5">
-                <h1 className="mb-1">Settings</h1>
+                <h1 className="change-font mb-1">Settings</h1>
                 <p className="mb-3">Here you can change max available seats for your restaurant.</p>
 
                 <form onSubmit={handleFormSubmit}>
@@ -84,7 +85,7 @@ const Settings = () => {
                     {status === 'success' && (
                         <>
                             {data.data.seats.map((seats, index) =>
-                                <h4 key={index}>{seats.maxSeats} seats available</h4>
+                                <h4 className="change-font" key={index}>{seats.maxSeats} seats available</h4>
                             )}
                             <div className="button">
                                 <button type="submit" className="btn btn-dark btn-sm">Update</button>

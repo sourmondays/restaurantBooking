@@ -18,7 +18,7 @@ class Admin extends React.Component {
   handleOnSubmit = e => {
     e.preventDefault();
 
-    console.log('Submitting login form', this.state);
+    // console.log('Submitting login form', this.state);
     Axios.post(config.API_HOST_ORIGINAL + '/admin/login', this.state).then(res => {
       console.log("Got response from login:", res.data);
       const access_token = res.data.data.access_token;

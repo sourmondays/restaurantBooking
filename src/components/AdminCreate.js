@@ -18,13 +18,9 @@ const intaialValue = {
 }
 
 const Booking = () => {
-  const navigat = useHistory();
-  // disable past dates
-
+  const navigate = useHistory();
   const [mutate] = useMutation(modifyBookings);
-
   const [reservation, setReservation] = useState(intaialValue);
-
 
   const onChange = e => {
     console.log("log somthing to the console ", e.target.value);
@@ -34,18 +30,16 @@ const Booking = () => {
     })
   }
 
-
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
     mutate(reservation)
     console.log("Submitting reservations...");
-    navigat.push('/adminbookings')
+    navigate.push('/adminbookings')
   }
   return (<>
     <AdminPanel />
-    <h1 className="text-center mt-5">Make a reservation</h1>
+    <h1 className="change-font text-center mt-5">Make a reservation</h1>
     <div className="container-booking">
       <form onSubmit={handleFormSubmit}>
         <div className="form-row">
@@ -55,7 +49,7 @@ const Booking = () => {
               type="text"
               className="form-control"
               id="firstName"
-              placeholder="ex. Ann"
+              placeholder="First name..."
               onChange={onChange}
               required
             />
@@ -66,7 +60,7 @@ const Booking = () => {
               type="text"
               className="form-control"
               id="lastName"
-              placeholder="ex. Jonsson"
+              placeholder="Last name..."
               onChange={onChange}
               required
             />
@@ -79,7 +73,7 @@ const Booking = () => {
               type="text"
               className="form-control"
               id="email"
-              placeholder="ex. ann.jonsson@hotmail.com"
+              placeholder="Email address..."
               onChange={onChange}
               required
             />
@@ -90,7 +84,7 @@ const Booking = () => {
               type="text"
               className="form-control"
               id="phone"
-              placeholder="ex. 0701236986"
+              placeholder="Phone..."
               onChange={onChange}
               required
             />
@@ -104,7 +98,7 @@ const Booking = () => {
           <div className="form-group col-md-4">
             <label htmlFor="time">Time</label>
             <select id="time" className="form-control" onChange={onChange} required >
-              <option defaultValue >Choose time</option>
+              <option defaultValue >Dinner time...</option>
               <option>18:00</option>
               <option>21:00</option>
             </select>
@@ -116,8 +110,8 @@ const Booking = () => {
               className="form-control"
               id="noPersons"
               min="1"
-              max="6"
-              placeholder="1 - 6 people"
+              max="90"
+              placeholder="1 - 6"
               onChange={onChange}
               required
             />
@@ -126,7 +120,7 @@ const Booking = () => {
 
         <button
           type="submit"
-          className="btn btn-primary col-md-12">
+          className="btn btn-primary btn-sm col-md-12">
           Make a reservation
               </button>
 

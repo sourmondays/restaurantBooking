@@ -107,6 +107,9 @@ label {
   p {
     font-family: 'Nunito', sans-serif;
   }
+  label {
+    font-family: 'Nunito', sans-serif;
+  }
 }
 
 @media (min-width: 1100px) {

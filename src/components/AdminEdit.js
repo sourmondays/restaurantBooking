@@ -3,9 +3,11 @@ import AdminPanel from "./AdminPanel";
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
 import config from '../modules/config'
+import { useHistory } from "react-router-dom";
 
 export default function AdminEdit(props) {
-    const [CategoryList, setCategory] = useState([]);
+    const navigate = useHistory();
+    const [BookingList, setBooking] = useState([]);
     const [data, setData] = useState({
         date: "",
         firstName: "",
@@ -29,9 +31,7 @@ export default function AdminEdit(props) {
             setData(res.data.data.bookings)
             console.log("Logged res data in edit:", res.data);
             console.log("Logged res.data.data.bookings", res.data.data.bookings);
-
             console.log(res.data.data.bookings.firstName);
-
 
         }).catch(err => console.error(err))
     }, []);
@@ -45,9 +45,11 @@ export default function AdminEdit(props) {
             }
         }).then(res => {
             console.log(res.data);
-            const myData = [...CategoryList, res.data]
-            setCategory(myData)
+            const myData = [...BookingList, res.data]
+            setBooking(myData)
+
         }).catch(err => console.error(err))
+        navigate.push('/adminbookings')
     }
 
     function handle(e) {
@@ -57,10 +59,9 @@ export default function AdminEdit(props) {
         setData(newData);
     }
 
-
     return (<>
         <AdminPanel />
-        <h1 className="text-center mt-5">Edit booking</h1>
+        <h1 className="change-font text-center mt-5">Edit booking</h1>
         <div className="container-booking">
 
             <form onSubmit={(e) => submit(e)}>
@@ -113,11 +114,7 @@ export default function AdminEdit(props) {
                     </div>
                 </div>
                 <div className="form-row">
-                    {/* <div className="form-group col-md-6">
-                        <label htmlFor="date">Date</label>
-                        <input type="date" className="form-control" id="date" onChange={(e) => handle(e)} value={data.date} required />
-                    </div> */}
-                    <div className="form-group col-md-4">
+                    <div className="form-group col-md-6">
                         <label htmlFor="time">Time</label>
                         <select id="time" className="form-control" onChange={(e) => handle(e)} value={data.time} required >
                             <option defaultValue >Choose time</option>
@@ -125,7 +122,7 @@ export default function AdminEdit(props) {
                             <option>21:00</option>
                         </select>
                     </div>
-                    <div className="form-group col-md-2">
+                    <div className="form-group col-md-6">
                         <label htmlFor="sizeparty">Party size</label>
                         <input
                             onChange={(e) => handle(e)}
@@ -140,14 +137,11 @@ export default function AdminEdit(props) {
                     </div>
                 </div>
 
-
                 <button
                     type="submit"
                     className="btn btn-primary col-md-12">
                     Edit booking
               </button>
-
-
             </form>
         </div>
     </>

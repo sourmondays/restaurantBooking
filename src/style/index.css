@@ -2,7 +2,9 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,14 +40,14 @@ label {
 
 .label {
   color: whitesmoke;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   margin-bottom: 0.2rem;
 }
 
 h2 {
   font-size: 1.2rem;
   color: whitesmoke;
-  font-family: 'Courgette', cursive;
+  font-family: "Courgette", cursive;
 }
 
 .booking-form {
@@ -86,7 +88,7 @@ h2 {
   .text-booking {
     margin-top: 4.5rem;
     color: whitesmoke;
-    font-family: 'Courgette', cursive;
+    font-family: "Courgette", cursive;
   }
   .booking-form {
     background-color: #006d77;
@@ -102,35 +104,35 @@ h2 {
   .completed {
     color: whitesmoke;
     margin-top: 10rem;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
     text-align: center;
   }
   .completed2 {
     color: whitesmoke;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
     font-weight: 700;
     text-align: center;
   }
   .completed3 {
     color: whitesmoke;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
     text-align: center;
   }
   .completed4 {
     color: whitesmoke;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
     text-align: center;
   }
   .label {
     color: whitesmoke;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
     margin-bottom: 0.2rem;
   }
   .btn {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
   }
   .form-control {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
   }
   /* Admin login  */
   .card {
@@ -146,13 +148,13 @@ h2 {
     border-radius: 1rem;
   }
   .change-font {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
   }
   p {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
   }
   label {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
   }
   .form-check-label {
     color: whitesmoke;

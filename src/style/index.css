@@ -61,6 +61,36 @@ h2 {
   margin: 0;
 }
 
+.space-down {
+  padding-bottom: 10rem;
+}
+
+.completed {
+  color: whitesmoke;
+  margin-top: 10rem;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+}
+
+.completed2 {
+  color: whitesmoke;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+
+.completed3 {
+  color: whitesmoke;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+}
+
+.completed4 {
+  color: whitesmoke;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+}
+
 @media (min-width: 668px) {
   h2 {
     font-size: 2rem;

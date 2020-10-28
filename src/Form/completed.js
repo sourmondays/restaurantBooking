@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Completed = ({ user }) => (
-    <div >
+    <div className="space-down">
         <p className="completed">
             Welcome, <b>{`${user.firstName} ${user.lastName}`}</b>{' '}
         </p>

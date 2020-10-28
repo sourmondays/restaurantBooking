@@ -86,7 +86,7 @@ const SecondPage = ({ step, setStep, user, setUser }) => {
                         <button onClick={() => setStep(step - 1)} type="button" className="btn btn-light btn-sm col-md-12 mb-2">
                             Back
                </button>
-                        <button type="submit" className="btn btn-light btn-sm col-md-12">
+                        <button type="submit" className="btn btn-light btn-sm col-md-12 mb-5">
                             Make reservation
                </button>
 

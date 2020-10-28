@@ -20,7 +20,7 @@ const FirstPage = ({ step, setStep, user, setUser }) => {
     return (
         <>
             <h2 className="text-booking">Reserve a table at our restaurant</h2>
-            <form onSubmit={handleContinue} >
+            <form className="change-size" onSubmit={handleContinue} >
                 <div className="form-group">
                     <label className="label" htmlFor="date" >Date</label>
                     <Input
@@ -62,7 +62,7 @@ const FirstPage = ({ step, setStep, user, setUser }) => {
                     <label className="form-check-label" for="exampleCheck1">I agree to the &nbsp; <Link to="/privacy"> Privacy Policy/GDPR</Link></label>
                 </div>
 
-                <button type="submit" className="btn btn-light btn-sm col-md-12 mt-2">
+                <button type="submit" className="btn btn-light btn-sm col-md-12 mt-2 mb-5">
                     Continue
                </button>
             </form>

@@ -1,90 +1,35 @@
 
 import AdminPanel from "./AdminPanel";
-import React, { useState, useEffect } from "react";
-import Axios from 'axios';
-import config from '../modules/config'
-import { useHistory } from "react-router-dom";
+import React from "react";
 
-export default function AdminEdit(props) {
-    const navigate = useHistory();
-    const [BookingList, setBooking] = useState([]);
-    const [data, setData] = useState({
-        date: "",
-        firstName: "",
-        lastName: "",
-        phone: "",
-        email: "",
-        noPersons: "",
-        time: "",
-    });
-
-
-    useEffect(() => {
-        const _id = props.match.params.id;
-        console.log("Logged data in edit:", _id);
-
-        Axios.get(config.API_HOST_ORIGINAL + '/adminbookings/' + _id, {
-            headers: {
-                'Authorization': 'Bearer ' + config.getToken()
-            }
-        }).then(res => {
-            setData(res.data.data.bookings)
-            console.log("Logged res data in edit:", res.data);
-            console.log("Logged res.data.data.bookings", res.data.data.bookings);
-            console.log(res.data.data.bookings.firstName);
-
-        }).catch(err => console.error(err))
-    }, []);
-
-    function submit(e) {
-        e.preventDefault();
-        const _id = props.match.params.id;
-        Axios.put(config.API_HOST_ORIGINAL + `/adminbookings/` + _id, data, {
-            headers: {
-                'Authorization': 'Bearer ' + config.getToken()
-            }
-        }).then(res => {
-            console.log(res.data);
-            const myData = [...BookingList, res.data]
-            setBooking(myData)
-
-        }).catch(err => console.error(err))
-        navigate.push('/adminbookings')
-    }
-
-    function handle(e) {
-        const newData = { ...data }
-        newData[e.target.id] = e.target.value;
-        console.log("Logging new data", newData);
-        setData(newData);
-    }
+const AdminEdit = () => {
 
     return (<>
         <AdminPanel />
-        <h1 className="change-font text-center mt-5">Edit booking</h1>
+        <h1 className="text-center mt-5">Edit booking</h1>
         <div className="container-booking">
 
-            <form onSubmit={(e) => submit(e)}>
+            <form >
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="firstName">Name</label>
                         <input
-                            onChange={(e) => handle(e)}
-                            value={data.firstName}
                             type="text"
                             className="form-control"
                             id="firstName"
+                            placeholder="ex. Ann"
+                            value=""
                             required
                         />
                     </div>
                     <div className="form-group col-md-6">
                         <label htmlFor="lastName">Last Name</label>
                         <input
-                            onChange={(e) => handle(e)}
-                            value={data.lastName}
                             type="text"
                             className="form-control"
                             id="lastName"
+                            placeholder="ex. Jonsson"
+
                             required
                         />
                     </div>
@@ -93,45 +38,48 @@ export default function AdminEdit(props) {
                     <div className="form-group col-md-6">
                         <label htmlFor="email">Email</label>
                         <input
-                            onChange={(e) => handle(e)}
-                            value={data.email}
                             type="text"
                             className="form-control"
                             id="email"
+                            placeholder="ex. ann.jonsson@hotmail.com"
+
                             required
                         />
                     </div>
                     <div className="form-group col-md-6">
                         <label htmlFor="phone">Phone </label>
                         <input
-                            onChange={(e) => handle(e)}
-                            value={data.phone}
                             type="text"
                             className="form-control"
                             id="phone"
+                            placeholder="ex. 0701236986"
+
                             required
                         />
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-6">
+                        <label htmlFor="date">Date</label>
+                        <input type="date" className="form-control" id="date" required />
+                    </div>
+                    <div className="form-group col-md-4">
                         <label htmlFor="time">Time</label>
-                        <select id="time" className="form-control" onChange={(e) => handle(e)} value={data.time} required >
+                        <select id="time" className="form-control" required >
                             <option defaultValue >Choose time</option>
                             <option>18:00</option>
                             <option>21:00</option>
                         </select>
                     </div>
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-2">
                         <label htmlFor="sizeparty">Party size</label>
                         <input
-                            onChange={(e) => handle(e)}
-                            value={data.noPersons}
                             type="number"
                             className="form-control"
                             id="noPersons"
                             min="1"
                             max="6"
+                            placeholder="1 - 6 people"
                             required
                         />
                     </div>
@@ -139,12 +87,15 @@ export default function AdminEdit(props) {
 
                 <button
                     type="submit"
-                    className="btn btn-primary btn-sm col-md-12">
+                    className="btn btn-primary col-md-12">
                     Edit booking
               </button>
+
             </form>
         </div>
     </>
     )
 
 };
+
+export default AdminEdit;

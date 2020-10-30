@@ -94,6 +94,7 @@ const FirstPage = ({ step, setStep, user, setUser }) => {
                         className="form-control" id="date"
                         type="date"
                         name="date"
+                        min={new Date().toISOString().split('T')[0]}
                         value={user.date}
                         onChange={(e) => handleUser(e) || handleTarget(e)}
                         required

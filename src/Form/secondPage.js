@@ -62,6 +62,8 @@ const SecondPage = ({ step, setStep, user, setUser }) => {
                         className="form-control"
                         placeholder="Your phone"
                         name="phone"
+                        minLength="8"
+                        maxLength="20"
                         value={user.phone}
                         onChange={(e) => handleUser(e)}
                         required
@@ -75,6 +77,7 @@ const SecondPage = ({ step, setStep, user, setUser }) => {
                         className="form-control"
                         placeholder="Your email address"
                         name="email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
                         value={user.email}
                         onChange={(e) => handleUser(e)}
                         required
@@ -83,9 +86,6 @@ const SecondPage = ({ step, setStep, user, setUser }) => {
 
                 <div>
                     <div className="align-center">
-                        <button onClick={() => setStep(step - 1)} type="button" className="btn btn-light btn-sm col-md-12 mb-2">
-                            Back
-               </button>
                         <button type="submit" className="btn btn-light btn-sm col-md-12 mb-5">
                             Make reservation
                </button>

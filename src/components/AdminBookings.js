@@ -70,16 +70,13 @@ const Bookings = (props) => {
         'Authorization': 'Bearer ' + config.getToken()
       }
     });
-    console.log(response.data);
-    setDatePicked(response);
-    setTime(response);
+    console.log(response.data.data.bookings);
     setBookings(response.data.data.bookings);
   }
 
   //Datepicker 
   function onChange(date, dateString) {
     console.log(dateString);
-    // setDatePicked(date)
     setDatePicked(dateString)
   }
 
@@ -95,8 +92,6 @@ const Bookings = (props) => {
     console.log(value);
     setTime(value)
   }
-
-
 
   return (
     <>

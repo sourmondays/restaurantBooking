@@ -17,7 +17,6 @@ export default function AdminEdit(props) {
         time: "",
     });
 
-
     useEffect(() => {
         const _id = props.match.params.id;
         console.log("Logged data in edit:", _id);

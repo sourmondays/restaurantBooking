@@ -95,6 +95,15 @@ h2 {
   color: whitesmoke;
 }
 
+.fof {
+  padding-top: 12rem;
+}
+
+.middle h1 {
+  margin: 0%;
+  font-size: 10rem;
+}
+
 @media (min-width: 668px) {
   h2 {
     font-size: 2rem;
@@ -180,25 +189,28 @@ h2 {
   .form-check-label {
     color: whitesmoke;
   }
+  .fof {
+    padding-top: 16rem;
+  }
+  .middle h1 {
+    margin: 0%;
+    font-size: 20rem;
+  }
 }
 
 @media (min-width: 992px) {
   .col-lg {
     height: 100vh;
   }
-  .img-fluid {
-    height: 100vh;
-  }
   .container-booking {
     padding-right: 12rem;
     padding-left: 12rem;
   }
-  .middle {
-    display: flex;
-    justify-content: center;
-  }
   .middle h1 {
     margin: 0%;
     font-size: 20rem;
+  }
+  .fof {
+    padding-top: 8rem;
   }
 }

@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import 'antd/dist/antd.css';
 import { ReactQueryDevtools } from 'react-query-devtools';
 
-import Layout from '../src/Layout/layout'
+
 import Main from "./components/Main";
 import Admin from "./components/AdminLogin";
 import AdminCreate from "./components/AdminCreate";
@@ -31,7 +31,6 @@ class App extends React.Component {
 
         <BrowserRouter>
           <div className="App">
-
             <Switch>
               <Route path="/admin" render={(props) => <Admin {...props} />} />
               <Route path="/admincreate" component={AdminCreate} />
@@ -39,9 +38,7 @@ class App extends React.Component {
               <Route path="/adminedit/:id" component={AdminEdit} />
               <Route path="/adminsettings" component={AdminSettings} />
               <Route path='/privacy' component={Privacy} />
-              <Layout>
-                <Route exact path="/" component={Main} />
-              </Layout>
+              <Route exact path="/" component={Main} />
               <Route path="" component={NotFound} />
             </Switch>
           </div>

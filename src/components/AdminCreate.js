@@ -93,7 +93,7 @@ const Booking = () => {
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="date">Date</label>
-            <input type="date" className="form-control" id="date" onChange={onChange} required />
+            <input type="date" className="form-control" id="date" onChange={onChange} min={new Date().toISOString().split('T')[0]} required />
           </div>
           <div className="form-group col-md-4">
             <label htmlFor="time">Time</label>
